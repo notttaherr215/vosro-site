@@ -3,40 +3,544 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VORSO — Privacy Policy</title>
+  <title>VORSO — Train Like It's a Game</title>
+  <meta name="description" content="VORSO turns your workout into a card game. Draw a card, do the reps, beat your best. Coming soon to iOS." />
   <style>
-    body { font-family: -apple-system, sans-serif; max-width: 680px; margin: 60px auto; padding: 0 24px; color: #1a1a1a; line-height: 1.7; }
-    h1 { font-size: 2rem; margin-bottom: 4px; }
-    h2 { font-size: 1.1rem; margin-top: 2rem; }
-    p, li { font-size: 0.97rem; color: #333; }
-    footer { margin-top: 3rem; font-size: 0.85rem; color: #888; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a10;
+      --surface: #13131f;
+      --border: #1e1e30;
+      --gold: #f5c842;
+      --gold-dim: rgba(245,200,66,0.12);
+      --white: #f0f0f0;
+      --muted: #7a7a9a;
+      --spade: #4a9eff;
+      --heart: #ff5f7e;
+      --diamond: #ff9f43;
+      --club: #6bcb77;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10,10,16,0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+    .nav-cta {
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 10px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(245,200,66,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--gold-dim);
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(245,200,66,0.25);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    /* CARDS VISUAL */
+    .cards-visual {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 64px;
+      perspective: 800px;
+    }
+    .card {
+      width: 72px;
+      height: 100px;
+      background: var(--surface);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      transition: transform 0.3s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .card:nth-child(1) { transform: rotate(-8deg) translateY(8px); color: var(--spade); }
+    .card:nth-child(2) { transform: rotate(-3deg) translateY(-4px); color: var(--heart); }
+    .card:nth-child(3) { transform: rotate(2deg) translateY(2px); color: var(--diamond); }
+    .card:nth-child(4) { transform: rotate(7deg) translateY(10px); color: var(--club); }
+    .card:hover { transform: rotate(0deg) translateY(-12px) !important; }
+    .card .suit { font-size: 1.6rem; }
+    .card .rank { font-size: 0.75rem; font-weight: 700; opacity: 0.7; margin-top: 2px; }
+
+    /* SIGNUP */
+    .signup-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      margin: 0 auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .signup-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .signup-section p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 28px;
+    }
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .form-row input {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-size: 0.95rem;
+      padding: 14px 18px;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-row input::placeholder { color: var(--muted); }
+    .form-row input:focus { border-color: var(--gold); }
+    .form-row button {
+      background: var(--gold);
+      color: #000;
+      font-size: 0.95rem;
+      font-weight: 800;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      letter-spacing: 0.02em;
+    }
+    .form-row button:hover { opacity: 0.88; }
+    .form-row button:active { transform: scale(0.98); }
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      color: var(--club);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* HOW IT WORKS */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section > p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin-bottom: 64px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .step:hover { border-color: rgba(245,200,66,0.3); transform: translateY(-4px); }
+    .step-num {
+      width: 40px; height: 40px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(245,200,66,0.25);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 0.9rem; color: var(--muted); }
+
+    /* GAMES */
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .game-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .game-card:hover { transform: translateY(-4px); }
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .game-card.arena::before { background: linear-gradient(90deg, var(--spade), var(--heart)); }
+    .game-card.call::before { background: linear-gradient(90deg, var(--diamond), var(--club)); }
+    .game-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .game-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
+    .game-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
+    .game-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .game-features li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .game-features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 40px;
+      margin-top: 80px;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 0.85rem; color: var(--muted); }
+
+    /* BOTTOM CTA */
+    .cta-section {
+      text-align: center;
+      padding: 100px 24px;
+      position: relative;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(245,200,66,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      max-width: 600px;
+      margin: 0 auto 16px;
+    }
+    .cta-section p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer .logo { font-size: 1rem; font-weight: 800; letter-spacing: 0.1em; color: var(--gold); }
+    footer p { font-size: 0.82rem; color: var(--muted); }
+    footer a { color: var(--muted); text-decoration: none; font-size: 0.82rem; }
+    footer a:hover { color: var(--white); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .signup-section { padding: 32px 24px; }
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+      .stats { padding: 32px 24px; }
+    }
   </style>
 </head>
 <body>
-  <h1>VORSO</h1>
-  <p><strong>Privacy Policy</strong> &mdash; Last updated June 12, 2026</p>
 
-  <h2>What We Collect</h2>
-  <p>VORSO collects your <strong>email address</strong> when you create an account. This is used solely to send you a one-time sign-in code (OTP). We do not collect your name, location, health data, or any other personal information.</p>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">VORSO</div>
+    <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+  </nav>
 
-  <h2>Your Workout Data</h2>
-  <p>All workout history, personal bests, streaks, and exercise data are stored <strong>on your device only</strong>. This data is never transmitted to our servers or shared with any third party.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge">Coming Soon to iOS</div>
+    <h1>Train Like<br /><span>It's a Game.</span></h1>
+    <p>VORSO turns your workout into a card game. Draw a card, do the reps, beat your best. No gym required.</p>
 
-  <h2>Authentication</h2>
-  <p>Sign-in is handled via AWS Cognito, a secure authentication service provided by Amazon Web Services. Your email address is stored by AWS Cognito solely for the purpose of sending sign-in codes.</p>
+    <div class="cards-visual">
+      <div class="card"><div class="suit">♠</div><div class="rank">Push-ups</div></div>
+      <div class="card"><div class="suit">♥</div><div class="rank">Squats</div></div>
+      <div class="card"><div class="suit">♦</div><div class="rank">Lunges</div></div>
+      <div class="card"><div class="suit">♣</div><div class="rank">Sit-ups</div></div>
+    </div>
 
-  <h2>Third Parties</h2>
-  <p>We do not sell, share, or rent your personal information to any third party. We do not use advertising networks or analytics services that collect personal data.</p>
+    <!-- WAITLIST FORM -->
+    <div class="signup-section" id="waitlist">
+      <h2>Be First In.</h2>
+      <p>Drop your email and we'll let you know the moment VORSO launches on the App Store.</p>
+      <form class="form-row" id="waitlist-form" action="FORMSPREE_URL" method="POST">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email address" required />
+        <input type="hidden" name="_subject" value="New VORSO Waitlist Signup" />
+        <button type="submit">Notify Me at Launch →</button>
+      </form>
+      <div class="success-msg" id="success-msg">🎉 You're on the list! We'll be in touch.</div>
+      <p class="form-note">No spam. One email when we launch, that's it.</p>
+    </div>
+  </section>
 
-  <h2>Data Deletion</h2>
-  <p>You can delete all locally stored data at any time via <strong>Settings → Clear All Data</strong> within the app. To request deletion of your account and email address from our systems, contact us at the address below.</p>
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="section-label">How It Works</div>
+    <h2>Simple rules.<br />Serious results.</h2>
+    <p>VORSO makes fitness addictive by wrapping it in the familiar logic of a card game.</p>
 
-  <h2>Children</h2>
-  <p>VORSO is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Draw a Card</h3>
+        <p>Each card in the deck maps to an exercise and a rep count. Ace of spades? 14 push-ups. Jack of hearts? 11 squats.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Do the Reps</h3>
+        <p>Hit start, complete the exercise, and tap done. The timer tracks every card and every second — no fudging it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Beat Your Best</h3>
+        <p>Personal bests, daily streaks, XP, and levelling up — from Rookie to Legend. Every session counts.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Challenge Others</h3>
+        <p>Play multiplayer on one device or go head-to-head in The Call — a precision rep prediction game.</p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Contact</h2>
-  <p>Questions about this policy? Email us at <a href="mailto:taherc21@gmail.com">taherc21@gmail.com</a></p>
+  <!-- GAMES -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-label">Two Games. One App.</div>
+    <h2>Pick your mode.</h2>
+    <p>Solo grind or competitive edge — VORSO has a game for every kind of athlete.</p>
 
-  <footer>&copy; 2026 VORSO. All rights reserved.</footer>
+    <div class="games">
+      <div class="game-card arena">
+        <div class="game-tag">Game 1</div>
+        <h3>Card Battle Arena</h3>
+        <p>Work through a shuffled deck of 13, 26, or 52 cards. Solo practice or local multiplayer — fastest total time wins.</p>
+        <ul class="game-features">
+          <li>Solo & multiplayer (2–4 players)</li>
+          <li>42 bodyweight exercises</li>
+          <li>Personal bests & streak tracking</li>
+          <li>XP levelling from Rookie to Legend</li>
+          <li>Session goals & custom exercises</li>
+        </ul>
+      </div>
+      <div class="game-card call">
+        <div class="game-tag">Game 2</div>
+        <h3>The Call</h3>
+        <p>Call your reps before you do them. Precision wins points — and the asymmetric scoring punishes sandbaggers.</p>
+        <ul class="game-features">
+          <li>1v1 precision rep prediction</li>
+          <li>5 rounds with escalating multipliers</li>
+          <li>Sealed commit — no peeking</li>
+          <li>Bold mode: double or bust on Round 5</li>
+          <li>Full scorecard & rematch</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-num">42</div><div class="stat-label">Bodyweight exercises</div></div>
+      <div class="stat"><div class="stat-num">52</div><div class="stat-label">Cards per full deck</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">Unique game modes</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Equipment needed</div></div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="cta-section">
+    <h2>Ready to earn your reps?</h2>
+    <p>VORSO launches on iOS soon. Get early access.</p>
+    <a href="#waitlist" class="nav-cta" style="font-size:1rem; padding: 16px 36px; display:inline-block;">Join the Waitlist →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">VORSO</div>
+    <p>&copy; 2026 VORSO. All rights reserved.</p>
+    <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+
+  <script>
+    const form = document.getElementById('waitlist-form');
+    const successMsg = document.getElementById('success-msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const btn = form.querySelector('button');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    });
+  </script>
+
 </body>
 </html>
