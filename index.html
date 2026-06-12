@@ -4,18 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VORSO — Train Like It's a Game</title>
-  <meta name="description" content="VORSO turns your workout into a card game. Draw a card, do the reps, beat your best. Coming soon to iOS." />
+  <meta name="description" content="VORSO turns your workout into a card game. Draw a card, do the reps, beat your best. Launching July 19 on iOS." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a10;
-      --surface: #13131f;
-      --border: #1e1e30;
+      --bg: #07070d;
+      --surface: #10101a;
+      --surface2: #161624;
+      --border: #1c1c2e;
+      --blue: #4a9eff;
+      --orange: #ff6b35;
       --gold: #f5c842;
-      --gold-dim: rgba(245,200,66,0.12);
-      --white: #f0f0f0;
-      --muted: #7a7a9a;
+      --white: #efefef;
+      --muted: #6b6b8a;
+      --grad: linear-gradient(135deg, var(--blue), var(--orange));
       --spade: #4a9eff;
       --heart: #ff5f7e;
       --diamond: #ff9f43;
@@ -23,434 +26,280 @@
     }
 
     html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; overflow-x: hidden; }
 
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
     /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 48px;
-      background: rgba(10,10,16,0.85);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(7,7,13,0.88);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       transition: padding 0.3s;
     }
-    nav.scrolled { padding: 14px 48px; }
-    .nav-logo { font-size: 1.4rem; font-weight: 800; letter-spacing: 0.12em; color: var(--gold); }
+    nav.scrolled { padding: 12px 48px; }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.5rem; font-weight: 900; letter-spacing: 0.1em;
+      background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-logo svg { width: 32px; height: 32px; flex-shrink: 0; }
     .nav-cta {
-      background: var(--gold);
-      color: #000;
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 10px 22px;
-      border-radius: 100px;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.1s;
+      background: var(--grad);
+      color: #fff; font-weight: 700; font-size: 0.85rem;
+      padding: 10px 24px; border-radius: 100px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(74,158,255,0.25);
     }
-    .nav-cta:hover { opacity: 0.85; transform: scale(1.03); }
+    .nav-cta:hover { opacity: 0.88; transform: scale(1.04); }
 
-    /* FADE-IN ANIMATIONS */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
 
     /* HERO */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
-      position: relative;
-      overflow: hidden;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px; position: relative; overflow: hidden;
     }
-    .hero-glow {
-      position: absolute;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(245,200,66,0.08) 0%, transparent 70%);
-      pointer-events: none;
-      transition: transform 0.1s ease-out;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 50% at 30% 40%, rgba(74,158,255,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 70% 60%, rgba(255,107,53,0.07) 0%, transparent 60%);
     }
+    .hero-glow { position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(74,158,255,0.05) 0%, transparent 70%); pointer-events: none; top: 50%; left: 50%; transform: translate(-50%,-50%); transition: transform 0.15s ease-out; }
 
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gold-dim);
-      color: var(--gold);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 100px;
-      border: 1px solid rgba(245,200,66,0.25);
-      margin-bottom: 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(74,158,255,0.3);
+      background: rgba(74,158,255,0.08);
+      color: var(--blue); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 7px 18px; border-radius: 100px; margin-bottom: 32px;
     }
-    .badge-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
 
-    .hero h1 {
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      max-width: 800px;
-      margin-bottom: 24px;
-    }
-    .hero h1 span { color: var(--gold); }
+    .hero h1 { font-size: clamp(3rem, 7.5vw, 6rem); font-weight: 900; line-height: 1.02; letter-spacing: -0.03em; max-width: 840px; margin-bottom: 20px; }
+    .hero h1 .grad { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero > p { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); max-width: 500px; margin-bottom: 52px; }
 
-    .hero > p {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 48px;
+    /* COUNTDOWN */
+    .countdown-wrap { margin-bottom: 52px; }
+    .countdown-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .countdown {
+      display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;
     }
+    .cd-block {
+      display: flex; flex-direction: column; align-items: center;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px 24px; min-width: 80px;
+      position: relative; overflow: hidden;
+    }
+    .cd-block::before { content: ''; position: absolute; inset: 0; background: var(--grad); opacity: 0.04; pointer-events: none; }
+    .cd-num { font-size: 2.4rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-variant-numeric: tabular-nums; }
+    .cd-unit { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+    .cd-sep { font-size: 2rem; font-weight: 900; color: var(--border); padding-bottom: 16px; }
 
-    /* INTERACTIVE CARD DEMO */
-    .card-demo {
-      margin-bottom: 56px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-    .cards-visual {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      perspective: 1000px;
-    }
+    /* CARD DEMO */
+    .card-demo { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 52px; }
+    .cards-visual { display: flex; gap: 14px; perspective: 1000px; }
     .play-card {
-      width: 80px; height: 112px;
-      background: var(--surface);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      cursor: pointer;
-      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.3s, border-color 0.3s;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      position: relative;
-      transform-style: preserve-3d;
+      width: 82px; height: 116px; background: var(--surface); border-radius: 12px;
+      border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      cursor: pointer; transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.3s, border-color 0.3s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
-    .play-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.6); }
-    .play-card:nth-child(1) { transform: rotate(-8deg) translateY(8px); color: var(--spade); border-color: rgba(74,158,255,0.3); }
-    .play-card:nth-child(2) { transform: rotate(-3deg) translateY(-4px); color: var(--heart); border-color: rgba(255,95,126,0.3); }
-    .play-card:nth-child(3) { transform: rotate(2deg) translateY(2px); color: var(--diamond); border-color: rgba(255,159,67,0.3); }
-    .play-card:nth-child(4) { transform: rotate(7deg) translateY(10px); color: var(--club); border-color: rgba(107,203,119,0.3); }
-    .play-card.lifted { transform: rotate(0deg) translateY(-20px) scale(1.08) !important; box-shadow: 0 24px 60px rgba(0,0,0,0.7) !important; }
-    .play-card .suit { font-size: 1.8rem; line-height: 1; }
-    .play-card .rank-label { font-size: 0.68rem; font-weight: 700; opacity: 0.7; letter-spacing: 0.03em; }
-
+    .play-card:nth-child(1) { transform: rotate(-9deg) translateY(10px); color: var(--spade); border-color: rgba(74,158,255,0.25); }
+    .play-card:nth-child(2) { transform: rotate(-3deg) translateY(-6px); color: var(--heart); border-color: rgba(255,95,126,0.25); }
+    .play-card:nth-child(3) { transform: rotate(3deg) translateY(4px); color: var(--diamond); border-color: rgba(255,159,67,0.25); }
+    .play-card:nth-child(4) { transform: rotate(9deg) translateY(12px); color: var(--club); border-color: rgba(107,203,119,0.25); }
+    .play-card.lifted { transform: rotate(0deg) translateY(-22px) scale(1.1) !important; box-shadow: 0 28px 60px rgba(0,0,0,0.7) !important; z-index: 2; }
+    .play-card .suit { font-size: 1.9rem; line-height: 1; }
+    .play-card .ex { font-size: 0.62rem; font-weight: 700; opacity: 0.65; letter-spacing: 0.02em; }
     .draw-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 10px 24px;
-      border-radius: 100px;
-      cursor: pointer;
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      font-size: 0.82rem; font-weight: 600; padding: 10px 26px; border-radius: 100px; cursor: pointer;
       transition: border-color 0.2s, color 0.2s, transform 0.1s;
-      letter-spacing: 0.04em;
     }
-    .draw-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .draw-btn:hover { border-color: var(--blue); color: var(--blue); }
     .draw-btn:active { transform: scale(0.96); }
-
     .drawn-result {
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--white);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.4s, transform 0.4s;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 28px;
-      max-width: 340px;
-      width: 100%;
+      min-height: 48px; opacity: 0; transform: translateY(10px);
+      transition: opacity 0.35s, transform 0.35s;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 13px 28px; font-size: 0.95rem; font-weight: 700; max-width: 320px; width: 100%; text-align: center;
     }
     .drawn-result.show { opacity: 1; transform: translateY(0); }
-    .drawn-result span { color: var(--gold); margin: 0 4px; }
+    .drawn-result .hi { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-    /* SIGNUP */
+    /* WAITLIST */
     .signup-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 48px 40px;
-      max-width: 480px;
-      width: 100%;
-      margin: 0 auto;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-      position: relative;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+      padding: 48px 40px; max-width: 480px; width: 100%; margin: 0 auto;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5); position: relative; overflow: hidden;
     }
     .signup-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,200,66,0.06) 0%, transparent 70%);
-      pointer-events: none;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--grad);
     }
-    .signup-section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+    .signup-section h2 { font-size: 1.5rem; font-weight: 900; margin-bottom: 8px; }
     .signup-section > p { color: var(--muted); font-size: 0.92rem; margin-bottom: 28px; }
     .form-row { display: flex; flex-direction: column; gap: 12px; }
     .form-row input {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--white);
-      font-size: 0.95rem;
-      padding: 14px 18px;
-      border-radius: 10px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      width: 100%;
+      background: var(--bg); border: 1px solid var(--border); color: var(--white);
+      font-size: 0.95rem; padding: 14px 18px; border-radius: 12px; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
     }
     .form-row input::placeholder { color: var(--muted); }
-    .form-row input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,200,66,0.1); }
+    .form-row input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(74,158,255,0.12); }
     .form-row button {
-      background: var(--gold);
-      color: #000;
-      font-size: 0.95rem;
-      font-weight: 800;
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+      background: var(--grad); color: #fff; font-size: 0.95rem; font-weight: 800;
+      padding: 15px; border: none; border-radius: 12px; cursor: pointer;
       transition: opacity 0.2s, transform 0.1s;
-      letter-spacing: 0.02em;
+      box-shadow: 0 4px 20px rgba(74,158,255,0.2);
     }
     .form-row button:hover { opacity: 0.88; }
     .form-row button:active { transform: scale(0.98); }
     .form-note { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 12px; }
-    .success-msg {
-      display: none;
-      text-align: center;
-      padding: 20px 0;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--club);
-    }
+    .success-msg { display: none; text-align: center; padding: 20px 0; font-weight: 700; font-size: 1.05rem; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     /* SECTIONS */
-    .section { max-width: 1000px; margin: 0 auto; padding: 100px 24px; }
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-    .section h2 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-    .section > p { color: var(--muted); font-size: 1.05rem; max-width: 520px; margin-bottom: 64px; }
+    .section { max-width: 1040px; margin: 0 auto; padding: 100px 24px; }
+    .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; }
+    .section h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .section > p { color: var(--muted); font-size: 1.05rem; max-width: 520px; margin-bottom: 60px; }
 
     /* STEPS */
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
     .step {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 28px;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-      cursor: default;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+      padding: 32px 26px; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; cursor: default;
+      position: relative; overflow: hidden;
     }
-    .step:hover { border-color: rgba(245,200,66,0.35); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .step::after { content: ''; position: absolute; inset: 0; background: var(--grad); opacity: 0; transition: opacity 0.25s; pointer-events: none; border-radius: 18px; }
+    .step:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); border-color: rgba(74,158,255,0.25); }
+    .step:hover::after { opacity: 0.03; }
     .step-num {
-      width: 40px; height: 40px;
-      background: var(--gold-dim);
-      border: 1px solid rgba(245,200,66,0.25);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; font-weight: 800;
-      color: var(--gold);
-      margin-bottom: 20px;
+      width: 42px; height: 42px; background: rgba(74,158,255,0.1); border: 1px solid rgba(74,158,255,0.2);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; font-weight: 900; margin-bottom: 20px;
+      background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      border-image: var(--grad) 1;
     }
     .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
-    .step p { font-size: 0.9rem; color: var(--muted); }
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
 
-    /* GAMES */
+    /* GAME CARDS */
     .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
     .game-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 36px 32px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 22px;
+      padding: 36px 32px; position: relative; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
     }
-    .game-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.4); }
+    .game-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
     .game-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .game-card.arena::before { background: linear-gradient(90deg, var(--spade), var(--heart)); }
     .game-card.call::before { background: linear-gradient(90deg, var(--diamond), var(--club)); }
-    .game-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-    .game-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
-    .game-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
-    .game-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .game-features li { font-size: 0.88rem; color: var(--muted); display: flex; align-items: center; gap: 10px; }
-    .game-features li::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 0.8rem; }
+    .game-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .game-card h3 { font-size: 1.45rem; font-weight: 900; margin-bottom: 12px; }
+    .game-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+    .game-features { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .game-features li { font-size: 0.86rem; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+    .game-features li::before { content: '✓'; font-weight: 900; font-size: 0.75rem; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; flex-shrink: 0; }
 
-    /* ANIMATED STATS */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 24px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 48px 40px;
-      margin-top: 80px;
-    }
+    /* STATS */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 48px 36px; margin-top: 72px; position: relative; overflow: hidden; }
+    .stats::before { content: ''; position: absolute; inset: 0; background: var(--grad); opacity: 0.03; pointer-events: none; }
     .stat { text-align: center; }
-    .stat-num {
-      font-size: 2.6rem;
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 6px;
-      font-variant-numeric: tabular-nums;
-    }
-    .stat-label { font-size: 0.85rem; color: var(--muted); }
+    .stat-num { font-size: 2.8rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1; margin-bottom: 6px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-variant-numeric: tabular-nums; }
+    .stat-label { font-size: 0.82rem; color: var(--muted); }
 
     /* FOUNDERS */
-    .founder-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-bottom: 40px; }
+    .founder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px; }
     .founder-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-top: 3px solid var(--gold);
-      border-radius: 20px;
-      padding: 32px 28px;
-      transition: transform 0.2s;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      padding: 32px 28px; transition: transform 0.2s; position: relative; overflow: hidden;
     }
+    .founder-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); }
     .founder-card:hover { transform: translateY(-4px); }
     .founder-initial {
-      width: 56px; height: 56px;
-      background: var(--gold-dim);
-      border: 1px solid rgba(245,200,66,0.25);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; font-weight: 900; color: var(--gold);
-      margin-bottom: 16px;
+      width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; font-weight: 900; margin-bottom: 18px;
+      background: rgba(74,158,255,0.1); border: 1px solid rgba(74,158,255,0.2);
+      color: transparent; background-clip: text; -webkit-background-clip: text;
     }
-    .founder-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
-    .founder-card p { font-size: 0.85rem; color: var(--muted); }
+    .founder-initial span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .founder-card h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; }
+    .founder-role { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; display: inline-block; }
+    .founder-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
 
     .vision-block {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 48px 44px;
-      max-width: 720px;
-      position: relative;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 22px;
+      padding: 52px 48px; position: relative; overflow: hidden;
     }
-    .vision-quote { font-size: 3rem; color: var(--gold); font-weight: 900; line-height: 1; margin-bottom: 24px; opacity: 0.7; }
-    .vision-block p { font-size: 0.97rem; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
-    .vision-block p:first-of-type { font-size: 1.12rem; color: var(--white); font-weight: 500; }
-    .vision-block p:last-of-type { margin-bottom: 28px; }
-    .vision-sig { display: flex; align-items: center; gap: 12px; }
-    .vision-sig-line { width: 32px; height: 2px; background: var(--gold); }
-    .vision-sig span { font-size: 0.85rem; font-weight: 700; color: var(--gold); letter-spacing: 0.05em; }
+    .vision-block::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--grad); }
+    .vision-quote { font-size: 4rem; font-weight: 900; line-height: 0.8; margin-bottom: 28px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .vision-block .lead { font-size: 1.15rem; color: var(--white); font-weight: 500; line-height: 1.75; margin-bottom: 18px; }
+    .vision-block .body { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 18px; }
+    .vision-sig { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+    .vision-sig-bar { width: 36px; height: 3px; background: var(--grad); border-radius: 2px; }
+    .vision-sig span { font-size: 0.85rem; font-weight: 700; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     /* CTA */
-    .cta-section {
-      text-align: center;
-      padding: 100px 24px;
-      position: relative;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(245,200,66,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-section h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -0.02em; max-width: 600px; margin: 0 auto 16px; }
-    .cta-section p { color: var(--muted); font-size: 1.05rem; margin-bottom: 40px; }
-    .cta-btn {
-      display: inline-block;
-      background: var(--gold);
-      color: #000;
-      font-weight: 800;
-      font-size: 1rem;
-      padding: 18px 40px;
-      border-radius: 100px;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .cta-btn:hover { opacity: 0.88; transform: scale(1.03); }
+    .cta-section { text-align: center; padding: 100px 24px; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(74,158,255,0.06) 0%, rgba(255,107,53,0.04) 50%, transparent 70%); pointer-events: none; }
+    .cta-section h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; letter-spacing: -0.03em; max-width: 640px; margin: 0 auto 16px; }
+    .cta-section p { color: var(--muted); font-size: 1.05rem; margin-bottom: 44px; }
+    .cta-btn { display: inline-block; background: var(--grad); color: #fff; font-weight: 800; font-size: 1.05rem; padding: 18px 44px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 8px 32px rgba(74,158,255,0.25); }
+    .cta-btn:hover { opacity: 0.88; transform: scale(1.04); }
 
     /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 48px;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 16px;
-    }
-    footer .logo { font-size: 1rem; font-weight: 800; letter-spacing: 0.1em; color: var(--gold); }
-    footer p { font-size: 0.82rem; color: var(--muted); }
-    footer a { color: var(--muted); text-decoration: none; font-size: 0.82rem; }
+    footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 0.1em; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    footer p { font-size: 0.8rem; color: var(--muted); }
+    footer a { color: var(--muted); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
     footer a:hover { color: var(--white); }
 
     @media (max-width: 640px) {
-      nav { padding: 16px 24px; }
-      .signup-section { padding: 32px 24px; }
-      footer { padding: 24px; flex-direction: column; align-items: flex-start; }
-      .stats { padding: 32px 24px; }
-      .vision-block { padding: 32px 24px; }
+      nav { padding: 14px 20px; }
+      nav.scrolled { padding: 10px 20px; }
+      .hero h1 { font-size: 2.6rem; }
+      .signup-section { padding: 32px 22px; }
+      .vision-block { padding: 32px 28px; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+      .stats { padding: 32px 20px; }
+      .cd-num { font-size: 1.9rem; }
+      .cd-block { min-width: 64px; padding: 16px 16px; }
     }
   </style>
 </head>
 <body>
 
   <nav id="nav">
-    <div class="nav-logo">VORSO</div>
+    <div class="nav-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4a9eff"/>
+            <stop offset="100%" stop-color="#ff6b35"/>
+          </linearGradient>
+        </defs>
+        <circle cx="10" cy="5" r="3" fill="url(#lg)" opacity="0.9"/>
+        <circle cx="22" cy="5" r="3" fill="url(#lg)" opacity="0.9"/>
+        <path d="M4 4 L16 28 L28 4" stroke="url(#lg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M10 5 L16 28" stroke="url(#lg)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <path d="M22 5 L16 28" stroke="url(#lg)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+      VORSO
+    </div>
     <a href="#waitlist" class="nav-cta">Join Waitlist</a>
   </nav>
 
@@ -458,38 +307,41 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="badge"><div class="badge-dot"></div> Coming Soon to iOS</div>
-    <h1>Train Like<br /><span>It's a Game.</span></h1>
+    <div class="hero-bg"></div>
+    <div class="badge"><div class="badge-dot"></div> Launching July 19, 2026</div>
+    <h1>Train Like<br /><span class="grad">It's a Game.</span></h1>
     <p>VORSO turns your workout into a card game. Draw a card, do the reps, beat your best. No gym required.</p>
 
-    <!-- INTERACTIVE CARD DEMO -->
-    <div class="card-demo">
-      <div class="cards-visual" id="cardsVisual">
-        <div class="play-card" data-suit="♠" data-color="spade" onclick="drawCard(this)">
-          <div class="suit">♠</div>
-          <div class="rank-label">Push-ups</div>
-        </div>
-        <div class="play-card" data-suit="♥" data-color="heart" onclick="drawCard(this)">
-          <div class="suit">♥</div>
-          <div class="rank-label">Squats</div>
-        </div>
-        <div class="play-card" data-suit="♦" data-color="diamond" onclick="drawCard(this)">
-          <div class="suit">♦</div>
-          <div class="rank-label">Lunges</div>
-        </div>
-        <div class="play-card" data-suit="♣" data-color="club" onclick="drawCard(this)">
-          <div class="suit">♣</div>
-          <div class="rank-label">Sit-ups</div>
-        </div>
+    <!-- COUNTDOWN -->
+    <div class="countdown-wrap reveal">
+      <div class="countdown-label">App launches in</div>
+      <div class="countdown">
+        <div class="cd-block"><div class="cd-num" id="cd-days">00</div><div class="cd-unit">Days</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-hours">00</div><div class="cd-unit">Hours</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-mins">00</div><div class="cd-unit">Mins</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><div class="cd-num" id="cd-secs">00</div><div class="cd-unit">Secs</div></div>
+      </div>
+    </div>
+
+    <!-- CARD DEMO -->
+    <div class="card-demo reveal d1">
+      <div class="cards-visual">
+        <div class="play-card" onclick="drawCard(this,'♠','Push-ups')"><div class="suit">♠</div><div class="ex">Push-ups</div></div>
+        <div class="play-card" onclick="drawCard(this,'♥','Squats')"><div class="suit">♥</div><div class="ex">Squats</div></div>
+        <div class="play-card" onclick="drawCard(this,'♦','Lunges')"><div class="suit">♦</div><div class="ex">Lunges</div></div>
+        <div class="play-card" onclick="drawCard(this,'♣','Sit-ups')"><div class="suit">♣</div><div class="ex">Sit-ups</div></div>
       </div>
       <button class="draw-btn" onclick="drawRandom()">Draw a card →</button>
       <div class="drawn-result" id="drawnResult"></div>
     </div>
 
-    <!-- WAITLIST FORM -->
-    <div class="signup-section reveal" id="waitlist">
+    <!-- WAITLIST -->
+    <div class="signup-section reveal d2" id="waitlist">
       <h2>Be First In.</h2>
-      <p>Drop your details and we'll let you know the moment VORSO launches on the App Store.</p>
+      <p>Drop your details and we'll notify you the moment VORSO drops on the App Store.</p>
       <form class="form-row" id="waitlist-form" action="https://formsubmit.co/taherc21@gmail.com" method="POST">
         <input type="text" name="name" placeholder="Your name" required />
         <input type="email" name="email" placeholder="Your email address" required />
@@ -499,7 +351,7 @@
         <input type="hidden" name="_next" value="https://vorso.org?success=true" />
         <button type="submit">Notify Me at Launch →</button>
       </form>
-      <div class="success-msg" id="success-msg">You're on the list. We'll be in touch.</div>
+      <div class="success-msg" id="success-msg">You're on the list. We'll be in touch on July 19.</div>
       <p class="form-note">No spam. One email when we launch, that's it.</p>
     </div>
   </section>
@@ -507,39 +359,23 @@
   <!-- HOW IT WORKS -->
   <section class="section">
     <div class="section-label reveal">How It Works</div>
-    <h2 class="reveal reveal-delay-1">Simple rules.<br />Serious results.</h2>
-    <p class="reveal reveal-delay-2">VORSO makes fitness addictive by wrapping it in the familiar logic of a card game.</p>
+    <h2 class="reveal d1">Simple rules.<br />Serious results.</h2>
+    <p class="reveal d2">VORSO makes fitness addictive by wrapping it in the familiar logic of a card game.</p>
     <div class="steps">
-      <div class="step reveal reveal-delay-1">
-        <div class="step-num">01</div>
-        <h3>Draw a Card</h3>
-        <p>Each card maps to an exercise and a rep count. Ace of spades? 14 push-ups. Jack of hearts? 11 squats.</p>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <div class="step-num">02</div>
-        <h3>Do the Reps</h3>
-        <p>Hit start, complete the exercise, tap done. The timer tracks every card and every second — no fudging it.</p>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <div class="step-num">03</div>
-        <h3>Beat Your Best</h3>
-        <p>Personal bests, daily streaks, XP, levelling — from Rookie to Legend. Every session counts.</p>
-      </div>
-      <div class="step reveal reveal-delay-4">
-        <div class="step-num">04</div>
-        <h3>Challenge Others</h3>
-        <p>Play multiplayer on one device or go head-to-head in The Call — a precision rep prediction game.</p>
-      </div>
+      <div class="step reveal d1"><div class="step-num">01</div><h3>Draw a Card</h3><p>Each card maps to an exercise and rep count. Ace of spades? 14 push-ups. Jack of hearts? 11 squats.</p></div>
+      <div class="step reveal d2"><div class="step-num">02</div><h3>Do the Reps</h3><p>Hit start, complete the exercise, tap done. The timer tracks every card and every second — no fudging.</p></div>
+      <div class="step reveal d3"><div class="step-num">03</div><h3>Beat Your Best</h3><p>Personal bests, daily streaks, XP, levelling — from Rookie to Legend. Every session counts.</p></div>
+      <div class="step reveal d4"><div class="step-num">04</div><h3>Challenge Others</h3><p>Multiplayer on one device or head-to-head in The Call — a precision rep prediction game.</p></div>
     </div>
   </section>
 
   <!-- GAMES -->
-  <section class="section" style="padding-top:0;">
+  <section class="section" style="padding-top:0">
     <div class="section-label reveal">Two Games. One App.</div>
-    <h2 class="reveal reveal-delay-1">Pick your mode.</h2>
-    <p class="reveal reveal-delay-2">Solo grind or competitive edge — VORSO has a game for every kind of athlete.</p>
+    <h2 class="reveal d1">Pick your mode.</h2>
+    <p class="reveal d2">Solo grind or competitive edge — VORSO has a game for every kind of athlete.</p>
     <div class="games">
-      <div class="game-card arena reveal reveal-delay-1">
+      <div class="game-card arena reveal d1">
         <div class="game-tag">Game 1</div>
         <h3>Card Battle Arena</h3>
         <p>Work through a shuffled deck of 13, 26, or 52 cards. Solo practice or local multiplayer — fastest total time wins.</p>
@@ -551,7 +387,7 @@
           <li>Session goals & custom exercises</li>
         </ul>
       </div>
-      <div class="game-card call reveal reveal-delay-2">
+      <div class="game-card call reveal d2">
         <div class="game-tag">Game 2</div>
         <h3>The Call</h3>
         <p>Call your reps before you do them. Precision wins — and the asymmetric scoring punishes sandbaggers.</p>
@@ -573,29 +409,31 @@
   </section>
 
   <!-- FOUNDERS -->
-  <section class="section" style="padding-top:0;">
+  <section class="section" style="padding-top:0">
     <div class="section-label reveal">The People Behind It</div>
-    <h2 class="reveal reveal-delay-1">Built by two people who wanted more from fitness.</h2>
-    <div class="founder-cards">
-      <div class="founder-card reveal reveal-delay-1">
-        <div class="founder-initial">T</div>
+    <h2 class="reveal d1">Built by two people who wanted more from fitness.</h2>
+    <div class="founder-grid">
+      <div class="founder-card reveal d1">
+        <div class="founder-initial"><span>T</span></div>
         <h3>Taher</h3>
-        <p>Co-Founder</p>
+        <div class="founder-role">Founder</div>
+        <p>The vision and drive behind VORSO — building a platform where fitness meets competition.</p>
       </div>
-      <div class="founder-card reveal reveal-delay-2">
-        <div class="founder-initial">A</div>
+      <div class="founder-card reveal d2">
+        <div class="founder-initial"><span>A</span></div>
         <h3>Ash</h3>
-        <p>Co-Founder</p>
+        <div class="founder-role">Co-Founder</div>
+        <p>The creative force shaping VORSO's games, experience, and the challenge at the heart of it all.</p>
       </div>
     </div>
     <div class="vision-block reveal">
       <div class="vision-quote">&ldquo;</div>
-      <p>Most people know they're capable of more. They just need the right push — something that makes going further feel less like suffering and more like a challenge worth taking on.</p>
-      <p>VORSO started with a simple idea: what if your workout had stakes? What if every rep, every session, was part of something bigger — a game you're actively trying to win?</p>
-      <p>We started with games. The vision is a platform: one where pushing your limits isn't a chore, it's the point.</p>
+      <p class="lead">Most people know they're capable of more. They just need the right push — something that makes going further feel less like suffering and more like a challenge worth taking on.</p>
+      <p class="body">VORSO started with a simple idea: what if your workout had stakes? What if every rep, every session, was part of something bigger — a game you're actively trying to win?</p>
+      <p class="body">We started with games. The vision is a platform: one where pushing your limits isn't a chore, it's the point. More competition, more challenge, a community built around always doing a little more than yesterday.</p>
       <div class="vision-sig">
-        <div class="vision-sig-line"></div>
-        <span>Taher & Ash, Co-Founders of VORSO</span>
+        <div class="vision-sig-bar"></div>
+        <span>Taher & Ash — Co-Founders of VORSO</span>
       </div>
     </div>
   </section>
@@ -603,115 +441,87 @@
   <!-- BOTTOM CTA -->
   <section class="cta-section">
     <h2 class="reveal">Ready to earn your reps?</h2>
-    <p class="reveal reveal-delay-1">VORSO launches on iOS soon. Get early access.</p>
-    <a href="#waitlist" class="cta-btn reveal reveal-delay-2">Join the Waitlist →</a>
+    <p class="reveal d1">VORSO drops on iOS July 19. Get early access now.</p>
+    <a href="#waitlist" class="cta-btn reveal d2">Join the Waitlist →</a>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="logo">VORSO</div>
+    <div class="footer-logo">VORSO</div>
     <p>&copy; 2026 VORSO. All rights reserved.</p>
     <a href="/privacy.html">Privacy Policy</a>
   </footer>
 
   <script>
-    /* Nav shrink on scroll */
+    /* Nav scroll */
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), { passive: true });
 
-    /* Mouse glow parallax */
+    /* Mouse glow */
     const glow = document.getElementById('heroGlow');
-    document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 60;
-      const y = (e.clientY / window.innerHeight - 0.5) * 60;
-      glow.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+    if (glow) document.addEventListener('mousemove', e => {
+      glow.style.transform = `translate(calc(-50% + ${(e.clientX/innerWidth-.5)*80}px), calc(-50% + ${(e.clientY/innerHeight-.5)*80}px))`;
     }, { passive: true });
 
-    /* Scroll reveal */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    /* Reveal on scroll */
+    const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-    /* Animated stat counters */
-    const statObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
-          const target = parseInt(el.dataset.target);
-          if (target === 0) { el.textContent = '0'; return; }
-          let start = 0;
-          const duration = 1200;
-          const step = (timestamp) => {
-            if (!start) start = timestamp;
-            const progress = Math.min((timestamp - start) / duration, 1);
-            const ease = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.floor(ease * target);
-            if (progress < 1) requestAnimationFrame(step);
-            else el.textContent = target;
-          };
-          requestAnimationFrame(step);
-        });
-        statObserver.unobserve(entry.target);
+    /* Stat counters */
+    const so = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
+        const t = +el.dataset.target;
+        if (t === 0) return;
+        let s = 0, dur = 1400;
+        const tick = ts => { if (!s) s = ts; const p = Math.min((ts-s)/dur, 1), e2 = 1-Math.pow(1-p,3); el.textContent = Math.floor(e2*t); if (p<1) requestAnimationFrame(tick); else el.textContent = t; };
+        requestAnimationFrame(tick);
       });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.stats').forEach(el => statObserver.observe(el));
+      so.unobserve(entry.target);
+    }), { threshold: 0.3 });
+    document.querySelectorAll('.stats').forEach(el => so.observe(el));
 
-    /* Interactive card demo */
-    const exercises = {
-      '♠': { name: 'Push-ups', color: 'spade' },
-      '♥': { name: 'Squats', color: 'heart' },
-      '♦': { name: 'Lunges', color: 'diamond' },
-      '♣': { name: 'Sit-ups', color: 'club' },
-    };
+    /* Countdown */
+    const launch = new Date('2026-07-19T00:00:00');
+    function tick() {
+      const diff = launch - Date.now();
+      if (diff <= 0) { document.querySelector('.countdown-wrap').innerHTML = '<div class="countdown-label" style="font-size:1.1rem;color:var(--white)">VORSO is Live on the App Store!</div>'; return; }
+      const d = Math.floor(diff/864e5), h = Math.floor((diff%864e5)/36e5), m = Math.floor((diff%36e5)/6e4), s = Math.floor((diff%6e4)/1e3);
+      document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    /* Card demo */
     const ranks = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-    const repMap = { '2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13,'A':14 };
+    const reps = {2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10,J:11,Q:12,K:13,A:14};
+    const suits = [['♠','Push-ups'],['♥','Squats'],['♦','Lunges'],['♣','Sit-ups']];
 
-    function drawCard(el) {
+    function drawCard(el, suit, ex) {
       document.querySelectorAll('.play-card').forEach(c => c.classList.remove('lifted'));
       el.classList.add('lifted');
-      const suit = el.dataset.suit;
-      const rank = ranks[Math.floor(Math.random() * ranks.length)];
-      const reps = repMap[rank];
-      const ex = exercises[suit];
-      showResult(`${rank} of ${suit} — <span>${reps} ${ex.name}</span>`);
+      const rank = ranks[Math.floor(Math.random()*ranks.length)];
+      showResult(`${rank} of ${suit} — <span class="hi">${reps[rank]} ${ex}</span>`);
     }
-
     function drawRandom() {
-      const cards = document.querySelectorAll('.play-card');
-      const suits = Object.keys(exercises);
-      const suit = suits[Math.floor(Math.random() * suits.length)];
-      const rank = ranks[Math.floor(Math.random() * ranks.length)];
-      const reps = repMap[rank];
-      const ex = exercises[suit];
-      cards.forEach(c => c.classList.remove('lifted'));
-      const target = [...cards].find(c => c.dataset.suit === suit);
-      if (target) target.classList.add('lifted');
-      showResult(`${rank} of ${suit} — <span>${reps} ${ex.name}</span>`);
+      const [suit, ex] = suits[Math.floor(Math.random()*suits.length)];
+      const rank = ranks[Math.floor(Math.random()*ranks.length)];
+      document.querySelectorAll('.play-card').forEach(c => { c.classList.remove('lifted'); if (c.querySelector('.suit').textContent === suit) c.classList.add('lifted'); });
+      showResult(`${rank} of ${suit} — <span class="hi">${reps[rank]} ${ex}</span>`);
     }
-
     function showResult(html) {
       const el = document.getElementById('drawnResult');
       el.classList.remove('show');
-      setTimeout(() => {
-        el.innerHTML = html;
-        el.classList.add('show');
-      }, 50);
+      setTimeout(() => { el.innerHTML = html; el.classList.add('show'); }, 60);
     }
 
-    /* Success state on redirect */
-    if (new URLSearchParams(window.location.search).get('success') === 'true') {
+    /* Success */
+    if (new URLSearchParams(location.search).get('success') === 'true') {
       document.getElementById('waitlist-form').style.display = 'none';
       document.getElementById('success-msg').style.display = 'block';
     }
   </script>
-
 </body>
 </html>
