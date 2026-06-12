@@ -309,8 +309,8 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="badge"><div class="badge-dot"></div> Launching July 19, 2026</div>
-    <h1>Train Like<br /><span class="grad">It's a Game.</span></h1>
-    <p>VORSO turns your workout into a card game. Draw a card, do the reps, beat your best. No gym required.</p>
+    <h1>Fitness.<br /><span class="grad">Reimagined.</span></h1>
+    <p>VORSO is a competitive fitness platform built around one idea — you're always capable of more. Games, challenges, and the drive to prove it.</p>
 
     <!-- COUNTDOWN -->
     <div class="countdown-wrap reveal">
@@ -359,8 +359,8 @@
   <!-- HOW IT WORKS -->
   <section class="section">
     <div class="section-label reveal">How It Works</div>
-    <h2 class="reveal d1">Simple rules.<br />Serious results.</h2>
-    <p class="reveal d2">VORSO makes fitness addictive by wrapping it in the familiar logic of a card game.</p>
+    <h2 class="reveal d1">The platform<br />for people who compete.</h2>
+    <p class="reveal d2">VORSO wraps fitness in structured challenge — games with stakes, sessions with meaning, and a platform built to push you further every time.</p>
     <div class="steps">
       <div class="step reveal d1"><div class="step-num">01</div><h3>Draw a Card</h3><p>Each card maps to an exercise and rep count. Ace of spades? 14 push-ups. Jack of hearts? 11 squats.</p></div>
       <div class="step reveal d2"><div class="step-num">02</div><h3>Do the Reps</h3><p>Hit start, complete the exercise, tap done. The timer tracks every card and every second — no fudging.</p></div>
@@ -401,10 +401,10 @@
       </div>
     </div>
     <div class="stats reveal">
-      <div class="stat"><div class="stat-num" data-target="42">0</div><div class="stat-label">Bodyweight exercises</div></div>
-      <div class="stat"><div class="stat-num" data-target="52">0</div><div class="stat-label">Cards per full deck</div></div>
-      <div class="stat"><div class="stat-num" data-target="2">0</div><div class="stat-label">Unique game modes</div></div>
-      <div class="stat"><div class="stat-num" data-target="0">0</div><div class="stat-label">Equipment needed</div></div>
+      <div class="stat"><div class="stat-num">£0</div><div class="stat-label">Equipment needed. Ever.</div></div>
+      <div class="stat"><div class="stat-num" data-target="100" data-append="%">0%</div><div class="stat-label">You, every single rep</div></div>
+      <div class="stat"><div class="stat-num" data-target="2">0</div><div class="stat-label">Games live — more coming</div></div>
+      <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Ways to push your limit</div></div>
     </div>
   </section>
 
@@ -472,9 +472,9 @@
       if (!entry.isIntersecting) return;
       entry.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
         const t = +el.dataset.target;
-        if (t === 0) return;
+        const append = el.dataset.append || '';
         let s = 0, dur = 1400;
-        const tick = ts => { if (!s) s = ts; const p = Math.min((ts-s)/dur, 1), e2 = 1-Math.pow(1-p,3); el.textContent = Math.floor(e2*t); if (p<1) requestAnimationFrame(tick); else el.textContent = t; };
+        const tick = ts => { if (!s) s = ts; const p = Math.min((ts-s)/dur, 1), e2 = 1-Math.pow(1-p,3); el.textContent = Math.floor(e2*t) + append; if (p<1) requestAnimationFrame(tick); else el.textContent = t + append; };
         requestAnimationFrame(tick);
       });
       so.unobserve(entry.target);
