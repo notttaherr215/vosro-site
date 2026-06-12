@@ -415,13 +415,16 @@
     <div class="signup-section" id="waitlist">
       <h2>Be First In.</h2>
       <p>Drop your email and we'll let you know the moment VORSO launches on the App Store.</p>
-      <form class="form-row" id="waitlist-form" action="FORMSPREE_URL" method="POST">
+      <form class="form-row" id="waitlist-form" action="https://formsubmit.co/taherc21@gmail.com" method="POST">
         <input type="text" name="name" placeholder="Your name" required />
         <input type="email" name="email" placeholder="Your email address" required />
         <input type="hidden" name="_subject" value="New VORSO Waitlist Signup" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="https://vorso.org?success=true" />
         <button type="submit">Notify Me at Launch →</button>
       </form>
-      <div class="success-msg" id="success-msg">🎉 You're on the list! We'll be in touch.</div>
+      <div class="success-msg" id="success-msg">You're on the list! We'll be in touch.</div>
       <p class="form-note">No spam. One email when we launch, that's it.</p>
     </div>
   </section>
@@ -551,31 +554,10 @@
     const form = document.getElementById('waitlist-form');
     const successMsg = document.getElementById('success-msg');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const btn = form.querySelector('button');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          form.style.display = 'none';
-          successMsg.style.display = 'block';
-        } else {
-          btn.textContent = 'Try again';
-          btn.disabled = false;
-        }
-      } catch {
-        btn.textContent = 'Try again';
-        btn.disabled = false;
-      }
-    });
+    if (new URLSearchParams(window.location.search).get('success') === 'true') {
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+    }
   </script>
 
 </body>
