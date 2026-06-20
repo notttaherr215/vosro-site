@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — VORSO</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #07070d; color: #efefef;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 24px;
+    }
+    .cards {
+      display: flex; gap: 12px; margin-bottom: 48px; perspective: 600px;
+    }
+    .card {
+      width: 72px; height: 100px; background: #10101a;
+      border: 1px solid #1e1e30; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+    }
+    .card:nth-child(1) { transform: rotate(-10deg) translateY(10px); }
+    .card:nth-child(2) { transform: rotate(-3deg) translateY(-6px); }
+    .card:nth-child(3) { transform: rotate(3deg) translateY(4px); }
+    .num {
+      font-size: 5rem; font-weight: 900; letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #4a9eff, #ff6b35);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+    p { font-size: 0.95rem; color: #6b6b8a; margin-bottom: 36px; max-width: 320px; }
+    a {
+      display: inline-block;
+      background: linear-gradient(135deg, #4a9eff, #ff6b35);
+      color: #fff; font-weight: 700; font-size: 0.95rem;
+      padding: 14px 32px; border-radius: 100px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    a:hover { opacity: 0.88; transform: scale(1.04); }
+    .logo {
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+      font-size: 1rem; font-weight: 900; letter-spacing: 0.16em;
+      background: linear-gradient(135deg, #4a9eff, #ff6b35);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="logo">VORSO</a>
+  <div class="cards">
+    <div class="card">♠️</div>
+    <div class="card">♥️</div>
+    <div class="card">♣️</div>
+  </div>
+  <div class="num">404</div>
+  <h1>This page folded.</h1>
+  <p>The card you're looking for isn't in this deck. Head back to the home screen.</p>
+  <a href="/">Back to VORSO →</a>
+</body>
+</html>
