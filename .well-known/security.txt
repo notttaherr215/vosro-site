@@ -1,3 +1,4 @@
 Contact: mailto:admin@vorso.org
 Expires: 2027-06-21T00:00:00.000Z
 Preferred-Languages: en
+Canonical: https://vorso.org/.well-known/security.txt
