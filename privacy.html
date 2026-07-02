@@ -24,6 +24,7 @@
     table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
     th { text-align: left; padding: 10px 14px; background: #1a1a28; color: #8888aa; font-weight: 600; letter-spacing: 0.04em; border-bottom: 1px solid #2a2a3e; }
     td { padding: 10px 14px; border-bottom: 1px solid #1e1e30; color: #b0b0c0; vertical-align: top; }
+    .pill { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #2a2a3e; color: #f5c842; }
     footer { text-align: center; padding: 32px; font-size: 0.82rem; color: #7a7a9a; border-top: 1px solid #1e1e30; }
   </style>
 </head>
@@ -31,13 +32,14 @@
   <nav><a href="/">← VORSO</a></nav>
   <main>
     <h1>Privacy Policy</h1>
-    <p class="date">Last updated: 23 June 2026</p>
-    <p class="intro">VORSO is a fitness platform built around card-based games. We believe your health data belongs to you. This policy explains exactly what we collect, why, and what rights you have over it.</p>
+    <p class="date">Last updated: 28 June 2026</p>
+    <p class="intro">VORSO is a fitness platform built around card-based games, with a social layer where you can follow other people, share posts, compete on leaderboards, and cheer each other on. We believe your data belongs to you. This policy explains exactly what we collect, why, where it lives, who can see it, and what rights you have over it.</p>
 
     <h2>1. Who We Are</h2>
     <p>VORSO ("we", "us", "our") operates the VORSO mobile application and the website at <a href="https://vorso.org">vorso.org</a>. For any privacy enquiries, contact us at <a href="mailto:customerfeedback@vorso.org">customerfeedback@vorso.org</a>.</p>
 
     <h2>2. What We Collect and Why</h2>
+    <p>Some data stays on your device; some is stored on our servers to power accounts, leaderboards, and social features. The <span class="pill">Public</span> tag marks data other users can see.</p>
     <div class="table-wrap">
       <table>
         <thead>
@@ -51,33 +53,75 @@
         <tbody>
           <tr>
             <td><strong>Email address</strong></td>
-            <td>Send sign-in OTP codes; identify your account</td>
-            <td>AWS Cognito (EU / US-East)</td>
+            <td>Send sign-in one-time codes; identify your account</td>
+            <td>AWS Cognito (US-East)</td>
             <td>Until you delete your account</td>
           </tr>
           <tr>
-            <td><strong>Display name</strong> (chosen by you)</td>
-            <td>Personalise your in-app experience</td>
-            <td>AWS Cognito</td>
+            <td><strong>Username</strong> (chosen by you) <span class="pill">Public</span></td>
+            <td>Your public handle — shown on leaderboards, posts, comments and your profile. Never your real name.</td>
+            <td>AWS DynamoDB (US-East)</td>
             <td>Until you delete your account</td>
           </tr>
           <tr>
-            <td><strong>Workout history, scores, streaks, XP</strong></td>
-            <td>Show your personal bests and progress across your devices</td>
+            <td><strong>Date of birth</strong></td>
+            <td>Verify you are 18 or older (we store the date to enforce our age requirement)</td>
+            <td>AWS DynamoDB (US-East)</td>
+            <td>Until you delete your account</td>
+          </tr>
+          <tr>
+            <td><strong>Optional profile details</strong> — country, gender, fitness level, goal, short bio, how you heard about us</td>
+            <td>Personalise your experience; your bio and country may appear on your public profile</td>
+            <td>AWS DynamoDB (US-East)</td>
+            <td>Until you remove them or delete your account</td>
+          </tr>
+          <tr>
+            <td><strong>Leaderboard scores &amp; times</strong> <span class="pill">Public</span></td>
+            <td>Rank you on global and friends leaderboards (only if you opt in)</td>
+            <td>AWS DynamoDB (US-East)</td>
+            <td>Until you leave the leaderboard or delete your account</td>
+          </tr>
+          <tr>
+            <td><strong>Social graph</strong> — who you follow, who follows you, follow requests, blocks</td>
+            <td>Power following, friend leaderboards, and blocking</td>
+            <td>AWS DynamoDB (US-East)</td>
+            <td>Until you undo the action or delete your account</td>
+          </tr>
+          <tr>
+            <td><strong>Posts, comments, likes/kudos, and shared sessions</strong> <span class="pill">Public</span></td>
+            <td>The content you publish to your followers in the activity feed</td>
+            <td>AWS DynamoDB (US-East)</td>
+            <td>Until you delete the content or your account</td>
+          </tr>
+          <tr>
+            <td><strong>Notifications &amp; interactions</strong> — who followed, liked, commented, or challenged you</td>
+            <td>Show your in-app notifications inbox</td>
+            <td>AWS DynamoDB (US-East)</td>
+            <td>Until you delete your account</td>
+          </tr>
+          <tr>
+            <td><strong>Reports you submit</strong> — about a user, post, or comment</td>
+            <td>Review and act on content that breaks our rules (content moderation)</td>
+            <td>AWS DynamoDB (US-East)</td>
+            <td>Retained as needed for safety and legal compliance</td>
+          </tr>
+          <tr>
+            <td><strong>Workout history, streaks, XP, personal bests</strong></td>
+            <td>Show your progress across your devices</td>
             <td>Your device, plus your own private iCloud account (Apple)</td>
             <td>Until you delete the app and your iCloud data, or request deletion</td>
           </tr>
           <tr>
-            <td><strong>Profile photo</strong> (optional, chosen by you)</td>
+            <td><strong>Profile photo</strong> (optional)</td>
             <td>Personalise your profile</td>
-            <td>Your device only (local storage)</td>
+            <td><strong>Your device only</strong> (not uploaded to our servers)</td>
             <td>Until you remove it, sign out, or delete the app</td>
           </tr>
           <tr>
-            <td><strong>Anonymous usage &amp; performance analytics</strong> (if/when enabled)</td>
-            <td>Understand how features are used to improve and develop the Service</td>
-            <td>Aggregated; not used to identify you</td>
-            <td>Retained in aggregate only</td>
+            <td><strong>Marketing &amp; safety preferences</strong> — marketing opt-in, safety acknowledgement, leaderboard opt-in, private-account setting</td>
+            <td>Respect your choices about visibility and communications</td>
+            <td>AWS DynamoDB (US-East) / your device</td>
+            <td>Until you change them or delete your account</td>
           </tr>
           <tr>
             <td><strong>Feedback messages</strong></td>
@@ -94,51 +138,65 @@
         </tbody>
       </table>
     </div>
-    <p>We do not collect location data, health metrics, device identifiers, or any biometric data. We do not currently use third-party analytics SDKs (no Firebase, Mixpanel, or equivalent). We may introduce privacy-respecting, anonymized usage and performance analytics to improve and develop the Service; where the law requires it, we will obtain your consent first.</p>
+    <p>We do <strong>not</strong> collect GPS or precise location (we ask for your country only, chosen by you), health metrics from Apple Health, biometric data, or advertising identifiers. We do <strong>not</strong> currently use third-party analytics SDKs (no Firebase, Mixpanel, or equivalent). We may later introduce privacy-respecting, anonymized usage and performance analytics to improve the Service; where the law requires it, we will obtain your consent first.</p>
 
-    <h2>3. Where Your Workout Data Lives</h2>
-    <p>Your game scores, personal bests, workout history, streaks, and XP are stored locally on your device and synced to <strong>your own private iCloud account</strong> (Apple's iCloud key-value storage), so your progress carries across your devices and survives reinstalling the app. This sync is between your device and your personal iCloud — <strong>the data is not sent to VORSO's servers and is not accessible to us.</strong> Your optional profile photo is stored only on your device.</p>
-    <p>To remove this data: delete the app from your device, and remove VORSO's data from your iCloud settings; or email us to request deletion of any account data we hold (your email address and display name).</p>
+    <h2>3. What Stays on Your Device vs. What We Store</h2>
+    <p><strong>On your device (and your private iCloud):</strong> your workout history, streaks, XP, personal bests, and profile photo. This is synced only between your device and <strong>your own iCloud account</strong> — it is not sent to VORSO's servers and is not accessible to us.</p>
+    <p><strong>On our servers (AWS, US-East):</strong> your account, username, age, optional profile details, and — when you use the social and leaderboard features — your scores, posts, comments, likes, follows, and reports. This is what makes leaderboards and the feed work across users.</p>
 
-    <h2>4. Third-Party Services We Use</h2>
+    <h2>4. Social Features &amp; What Others Can See</h2>
+    <p>VORSO is social by design. When you use these features, other people can see certain information:</p>
+    <ul>
+      <li>Your <strong>username, bio, and country</strong> appear on your public profile.</li>
+      <li>Your <strong>leaderboard scores and times</strong> appear on leaderboards — <strong>only if you keep "Appear on leaderboards" turned on.</strong> Turn it off any time in Settings to remove yourself.</li>
+      <li><strong>Posts, comments, likes, and shared sessions</strong> are visible to people who can see your activity. You can delete any of your own content at any time.</li>
+      <li>Setting your account to <strong>Private</strong> means people must send a follow request before they can follow you and see your activity.</li>
+      <li>You can <strong>block</strong> anyone (they can no longer follow you, see you in friend leaderboards, or interact with you) and <strong>report</strong> users or content.</li>
+    </ul>
+    <p>Your real name and email are <strong>never</strong> shown to other users — only your chosen username.</p>
+
+    <h2>5. Content Moderation &amp; Safety</h2>
+    <p>VORSO has <strong>zero tolerance for objectionable content or abusive behaviour</strong>. We provide in-app tools to <strong>block</strong> users and <strong>report</strong> users, posts, and comments. We review reports and take action — including removing content and disabling accounts — and we aim to act on reports of objectionable content within 24 hours. Continued or serious violations result in permanent removal from the Service. See our <a href="/terms.html">Terms of Service</a> for the full content policy.</p>
+
+    <h2>6. Third-Party Services We Use</h2>
     <p>We use a small number of carefully selected services:</p>
     <ul>
-      <li><strong>AWS Cognito</strong> (Amazon Web Services) — handles account creation and sign-in authentication. Your email address is stored in Cognito. Amazon's privacy policy: <a href="https://aws.amazon.com/privacy/" target="_blank" rel="noopener">aws.amazon.com/privacy</a></li>
-      <li><strong>Resend</strong> — delivers OTP sign-in codes and feedback confirmation emails. Email content passes through Resend's infrastructure transiently and is not retained by them. Resend's privacy policy: <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">resend.com/legal/privacy-policy</a></li>
-      <li><strong>Cloudflare</strong> — proxies our website for security and performance. Cloudflare may process request metadata (IP address, headers) per their privacy policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></li>
+      <li><strong>Amazon Web Services (AWS)</strong> — AWS Cognito handles sign-in authentication (stores your email); AWS DynamoDB and related services store your account, leaderboard, and social data in the US-East region. Amazon's privacy policy: <a href="https://aws.amazon.com/privacy/" target="_blank" rel="noopener">aws.amazon.com/privacy</a></li>
+      <li><strong>Resend</strong> — delivers one-time sign-in codes and feedback confirmation emails. Email content passes through Resend transiently and is not retained by them. <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">resend.com/legal/privacy-policy</a></li>
+      <li><strong>Cloudflare</strong> — proxies our website for security and performance and may process request metadata (IP address, headers). <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></li>
     </ul>
-    <p>We do not sell, rent, or share your personal data with any other third party for marketing or commercial purposes.</p>
+    <p>We do not sell, rent, or share your personal data with any third party for marketing or commercial purposes.</p>
 
-    <h2>5. Legal Basis for Processing (GDPR)</h2>
+    <h2>7. Legal Basis for Processing (GDPR)</h2>
     <p>If you are in the European Economic Area (EEA), UK, or Switzerland, we process your personal data under the following legal bases:</p>
     <ul>
-      <li><strong>Contract performance</strong> — your email address is necessary to provide the authentication service you signed up for.</li>
-      <li><strong>Legitimate interests</strong> — responding to feedback you voluntarily submit.</li>
-      <li><strong>Consent</strong> — waitlist sign-ups; you can withdraw at any time by contacting us.</li>
+      <li><strong>Contract performance</strong> — your email, username, and age are necessary to provide the account, leaderboard, and social services you signed up for.</li>
+      <li><strong>Legitimate interests</strong> — keeping the community safe (moderation), preventing abuse, and responding to feedback.</li>
+      <li><strong>Consent</strong> — optional profile details, marketing communications, and waitlist sign-ups; you can withdraw at any time.</li>
     </ul>
 
-    <h2>6. Your Rights</h2>
+    <h2>8. Your Rights</h2>
     <p>Depending on your location, you may have the following rights:</p>
     <ul>
       <li><strong>Access</strong> — request a copy of the personal data we hold about you.</li>
-      <li><strong>Correction</strong> — ask us to correct inaccurate data.</li>
-      <li><strong>Deletion ("right to be forgotten")</strong> — ask us to delete your account and all associated personal data.</li>
+      <li><strong>Correction</strong> — edit your username, bio, and profile details in-app, or ask us to correct data.</li>
+      <li><strong>Deletion ("right to be forgotten")</strong> — delete your account directly in the app (Profile → Delete my account), which erases your account, username, profile, scores, posts, comments, follows, and other social data from our servers. You can also email us.</li>
       <li><strong>Portability</strong> — receive your data in a structured, machine-readable format.</li>
       <li><strong>Objection / Restriction</strong> — object to or restrict certain processing activities.</li>
       <li><strong>California (CCPA)</strong> — California residents have the right to know, delete, and opt-out of the sale of personal information. We do not sell personal information.</li>
     </ul>
     <p>To exercise any of these rights, email <a href="mailto:customerfeedback@vorso.org">customerfeedback@vorso.org</a>. We will respond within 30 days.</p>
 
-    <h2>7. Data Security</h2>
-    <p>Authentication is managed through AWS Cognito, which enforces industry-standard security including encrypted storage and TLS in transit. Our website is served over HTTPS with HSTS enforced. We do not store passwords — sign-in uses one-time codes only.</p>
+    <h2>9. Data Security</h2>
+    <p>Authentication is managed through AWS Cognito, which enforces industry-standard security including encrypted storage and TLS in transit. Our backend runs on AWS with access controls and encrypted storage. Our website is served over HTTPS with HSTS enforced. We do not store passwords — sign-in uses one-time codes only.</p>
 
-    <h2>8. Age Requirement</h2>
-    <p>VORSO is intended for adults. You must be <strong>18 or older</strong> to create an account or use the Service, as set out in our <a href="/terms.html">Terms of Service</a>. We do not knowingly collect personal data from anyone under 18. If you believe someone under 18 has provided us with their data, contact us and we will delete it promptly.</p>
+    <h2>10. Age Requirement</h2>
+    <p>VORSO is intended for adults. You must be <strong>18 or older</strong> to create an account or use the Service, as set out in our <a href="/terms.html">Terms of Service</a>. We collect your date of birth solely to verify this. We do not knowingly collect personal data from anyone under 18. If you believe someone under 18 has provided us with their data, contact us and we will delete it promptly.</p>
 
-    <h2>9. Changes to This Policy</h2>
+    <h2>11. Changes to This Policy</h2>
     <p>If we make material changes to this policy, we will update the "Last updated" date above and, where appropriate, notify you by email. Continued use of VORSO after changes take effect constitutes acceptance of the updated policy.</p>
 
-    <h2>10. Contact Us</h2>
+    <h2>12. Contact Us</h2>
     <p>For privacy-related questions, data requests, or concerns:<br>
     Email: <a href="mailto:customerfeedback@vorso.org">customerfeedback@vorso.org</a><br>
     Website: <a href="https://vorso.org">vorso.org</a></p>
