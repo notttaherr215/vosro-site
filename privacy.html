@@ -32,7 +32,7 @@
   <nav><a href="/">← VORSO</a></nav>
   <main>
     <h1>Privacy Policy</h1>
-    <p class="date">Last updated: 28 June 2026</p>
+    <p class="date">Last updated: 3 July 2026</p>
     <p class="intro">VORSO is a fitness platform built around card-based games, with a social layer where you can follow other people, share posts, compete on leaderboards, and cheer each other on. We believe your data belongs to you. This policy explains exactly what we collect, why, where it lives, who can see it, and what rights you have over it.</p>
 
     <h2>1. Who We Are</h2>
@@ -118,6 +118,12 @@
             <td>Until you remove it, sign out, or delete the app</td>
           </tr>
           <tr>
+            <td><strong>Approximate location</strong> (optional) — a city-level area only, never your precise position</td>
+            <td>Rank you on city &amp; country leaderboards and show players near you. Only used when you turn it on, and only requested at the moment you use one of those features.</td>
+            <td>AWS DynamoDB (US-East) — stored as a coarse area label and a short geohash (~city), <strong>not</strong> GPS coordinates</td>
+            <td>Until you turn location off, or delete your account</td>
+          </tr>
+          <tr>
             <td><strong>Marketing &amp; safety preferences</strong> — marketing opt-in, safety acknowledgement, leaderboard opt-in, private-account setting</td>
             <td>Respect your choices about visibility and communications</td>
             <td>AWS DynamoDB (US-East) / your device</td>
@@ -138,7 +144,7 @@
         </tbody>
       </table>
     </div>
-    <p>We do <strong>not</strong> collect GPS or precise location (we ask for your country only, chosen by you), health metrics from Apple Health, biometric data, or advertising identifiers. We do <strong>not</strong> currently use third-party analytics SDKs (no Firebase, Mixpanel, or equivalent). We may later introduce privacy-respecting, anonymized usage and performance analytics to improve the Service; where the law requires it, we will obtain your consent first.</p>
+    <p>We do <strong>not</strong> collect <strong>precise</strong> GPS location. If you choose to turn it on, we collect an <strong>approximate, city-level location</strong> to rank you on city/country leaderboards and show players near you — stored only as a coarse area label and a short geohash, never precise coordinates, and only requested at the moment you use those features. We do <strong>not</strong> collect health metrics from Apple Health, biometric data, or advertising identifiers. We do <strong>not</strong> currently use third-party analytics SDKs (no Firebase, Mixpanel, or equivalent). We may later introduce privacy-respecting, anonymized usage and performance analytics to improve the Service; where the law requires it, we will obtain your consent first.</p>
 
     <h2>3. What Stays on Your Device vs. What We Store</h2>
     <p><strong>On your device (and your private iCloud):</strong> your workout history, streaks, XP, personal bests, and profile photo. This is synced only between your device and <strong>your own iCloud account</strong> — it is not sent to VORSO's servers and is not accessible to us.</p>
@@ -152,6 +158,7 @@
       <li><strong>Posts, comments, likes, and shared sessions</strong> are visible to people who can see your activity. You can delete any of your own content at any time.</li>
       <li>Setting your account to <strong>Private</strong> means people must send a follow request before they can follow you and see your activity.</li>
       <li>You can <strong>block</strong> anyone (they can no longer follow you, see you in friend leaderboards, or interact with you) and <strong>report</strong> users or content.</li>
+      <li>If you turn on <strong>location</strong>, "players near you" shows others in your approximate area. It only ever indicates rough proximity — your <strong>exact location is never shown to anyone</strong>, and private accounts don't appear.</li>
     </ul>
     <p>Your real name and email are <strong>never</strong> shown to other users — only your chosen username.</p>
 
