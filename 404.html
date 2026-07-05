@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 — VORSO</title>
+  <title>VORSO</title>
+  <meta name="robots" content="noindex" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -13,15 +14,12 @@
       align-items: center; justify-content: center; text-align: center;
       padding: 24px;
     }
-    .cards {
-      display: flex; gap: 12px; margin-bottom: 48px; perspective: 600px;
-    }
+    .cards { display: flex; gap: 12px; margin-bottom: 48px; perspective: 600px; }
     .card {
       width: 72px; height: 100px; background: #10101a;
       border: 1px solid #1e1e30; border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 2rem;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+      font-size: 2rem; box-shadow: 0 12px 32px rgba(0,0,0,0.6);
     }
     .card:nth-child(1) { transform: rotate(-10deg) translateY(10px); }
     .card:nth-child(2) { transform: rotate(-3deg) translateY(-6px); }
@@ -33,15 +31,15 @@
       margin-bottom: 12px;
     }
     h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
-    p { font-size: 0.95rem; color: #6b6b8a; margin-bottom: 36px; max-width: 320px; }
-    a {
+    p { font-size: 0.95rem; color: #6b6b8a; margin-bottom: 36px; max-width: 340px; }
+    a.cta {
       display: inline-block;
       background: linear-gradient(135deg, #4a9eff, #ff6b35);
       color: #fff; font-weight: 700; font-size: 0.95rem;
       padding: 14px 32px; border-radius: 100px; text-decoration: none;
       transition: opacity 0.2s, transform 0.15s;
     }
-    a:hover { opacity: 0.88; transform: scale(1.04); }
+    a.cta:hover { opacity: 0.88; transform: scale(1.04); }
     .logo {
       position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
       font-size: 1rem; font-weight: 900; letter-spacing: 0.16em;
@@ -49,18 +47,72 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       text-decoration: none;
     }
+    /* Chase invite */
+    #chase { display: none; max-width: 420px; }
+    #chase .flag { font-size: 3.4rem; margin-bottom: 14px; }
+    #chase h1 { font-size: 1.7rem; margin-bottom: 10px; }
+    #chase .sub { color: #9a9ab5; margin-bottom: 26px; }
+    .code-box {
+      background: #10101a; border: 1px solid #26263a; border-radius: 16px;
+      padding: 18px 20px; margin-bottom: 26px;
+    }
+    .code-label { font-size: 0.72rem; letter-spacing: 0.18em; color: #6b6b8a; font-weight: 800; margin-bottom: 8px; }
+    .code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 1.9rem; font-weight: 800; letter-spacing: 0.08em; color: #f5c842;
+      word-break: break-all;
+    }
+    .steps { text-align: left; margin: 0 auto 30px; max-width: 340px; color: #c9c9de; font-size: 0.92rem; }
+    .steps li { margin: 8px 0 8px 4px; padding-left: 6px; }
+    .steps b { color: #efefef; }
   </style>
 </head>
 <body>
   <a href="/" class="logo">VORSO</a>
-  <div class="cards">
-    <div class="card">♠️</div>
-    <div class="card">♥️</div>
-    <div class="card">♣️</div>
+
+  <!-- Challenge invite (shown for /c/<code> links) -->
+  <div id="chase">
+    <div class="flag">🏁</div>
+    <h1>You've been challenged!</h1>
+    <p class="sub">A friend wants you to race their run in <b>The Chase</b> on VORSO — same distance, fastest time wins.</p>
+    <div class="code-box">
+      <div class="code-label">YOUR CHALLENGE CODE</div>
+      <div class="code" id="code">—</div>
+    </div>
+    <ol class="steps">
+      <li><b>Get VORSO</b> — join the waitlist below; we'll tell you the moment it lands on the App Store.</li>
+      <li><b>Sign up</b> and pick your @username.</li>
+      <li>Open <b>The Chase &rarr; My Run Challenges &rarr; Join with a code</b> and enter the code above.</li>
+    </ol>
+    <a href="/#waitlist" class="cta">Get VORSO &rarr;</a>
   </div>
-  <div class="num">404</div>
-  <h1>This page folded.</h1>
-  <p>The card you're looking for isn't in this deck. Head back to the home screen.</p>
-  <a href="/">Back to VORSO →</a>
+
+  <!-- Standard 404 (shown for everything else) -->
+  <div id="notfound">
+    <div class="cards">
+      <div class="card">&spades;&#65039;</div>
+      <div class="card">&hearts;&#65039;</div>
+      <div class="card">&clubs;&#65039;</div>
+    </div>
+    <div class="num">404</div>
+    <h1>This page folded.</h1>
+    <p>The card you're looking for isn't in this deck. Head back to the home screen.</p>
+    <a href="/" class="cta">Back to VORSO &rarr;</a>
+  </div>
+
+  <script>
+    // Challenge share links look like /c/<code>. GitHub Pages serves 404.html for these
+    // (no per-code file), so detect the path here and render the invite instead of a 404.
+    (function () {
+      var m = window.location.pathname.match(/^\/c\/([A-Za-z0-9_-]+)\/?$/);
+      if (m) {
+        var code = decodeURIComponent(m[1]).toUpperCase();
+        document.getElementById('code').textContent = code;
+        document.getElementById('chase').style.display = 'block';
+        document.getElementById('notfound').style.display = 'none';
+        document.title = 'You have been challenged - VORSO';
+      }
+    })();
+  </script>
 </body>
 </html>
