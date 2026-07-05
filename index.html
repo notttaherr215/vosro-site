@@ -231,6 +231,7 @@
     .game-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .game-card.arena::before { background: linear-gradient(90deg, var(--spade), var(--heart)); }
     .game-card.call::before { background: linear-gradient(90deg, var(--diamond), var(--club)); }
+    .game-card.chase::before { background: linear-gradient(90deg, #2ec26b, #ff8c42); }
     .game-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
     .game-card h3 { font-size: 1.45rem; font-weight: 900; margin-bottom: 12px; }
     .game-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
@@ -423,22 +424,22 @@
 
   <!-- HOW IT WORKS -->
   <section class="section">
-    <div class="section-label reveal">How It Works</div>
-    <h2 class="reveal d1">The platform<br />for people who compete.</h2>
-    <p class="reveal d2">VORSO wraps fitness in structured challenge — games with stakes, sessions with meaning, and a platform built to push you further every time.</p>
+    <div class="section-label reveal">How to Play</div>
+    <h2 class="reveal d1">Three games.<br />One simple loop.</h2>
+    <p class="reveal d2">Whichever game you pick, it's the same rhythm — choose your challenge, put in the work, and watch it count. No equipment, no fudging.</p>
     <div class="steps">
-      <div class="step reveal d1"><div class="step-num">01</div><h3>Draw a Card</h3><p>Each card maps to an exercise and rep count. Ace of spades? 14 push-ups. Jack of hearts? 11 squats.</p></div>
-      <div class="step reveal d2"><div class="step-num">02</div><h3>Do the Reps</h3><p>Hit start, complete the exercise, tap done. The timer tracks every card and every second — no fudging.</p></div>
+      <div class="step reveal d1"><div class="step-num">01</div><h3>Pick a Game</h3><p>Card Battle Arena (a deck of reps), The Call (call your reps), or The Chase (a GPS run). Each with its own twist.</p></div>
+      <div class="step reveal d2"><div class="step-num">02</div><h3>Play &amp; Track</h3><p>Reps, rep-calls, or GPS distance &amp; pace — tracked live as you go. The app keeps you honest.</p></div>
       <div class="step reveal d3"><div class="step-num">03</div><h3>Beat Your Best</h3><p>Personal bests, daily streaks, XP, levelling — from Rookie to Legend. Every session counts.</p></div>
-      <div class="step reveal d4"><div class="step-num">04</div><h3>Compete &amp; Connect</h3><p>Climb global and friends-only leaderboards, follow other athletes, react to their sessions, and challenge anyone to beat your score.</p></div>
+      <div class="step reveal d4"><div class="step-num">04</div><h3>Compete &amp; Connect</h3><p>Climb global and friends-only leaderboards, follow other athletes, and challenge anyone to beat you.</p></div>
     </div>
   </section>
 
   <!-- GAMES -->
   <section class="section" style="padding-top:0">
-    <div class="section-label reveal">Two Games. One App.</div>
+    <div class="section-label reveal">Three Games. One App.</div>
     <h2 class="reveal d1">Pick your mode.</h2>
-    <p class="reveal d2">Solo grind or competitive edge — VORSO has a game for every kind of athlete.</p>
+    <p class="reveal d2">Solo grind, head-to-head, or a race through the streets — VORSO has a game for every kind of athlete.</p>
     <div class="games">
       <div class="game-card arena reveal d1">
         <div class="game-tag">Game 1</div>
@@ -457,18 +458,30 @@
         <h3>The Call</h3>
         <p>Call your reps before you do them. Precision wins — and the asymmetric scoring punishes sandbaggers.</p>
         <ul class="game-features">
-          <li>1v1 precision rep prediction</li>
+          <li>Solo or 1v1 precision rep prediction</li>
           <li>5 rounds with escalating multipliers</li>
           <li>Sealed commit — no peeking</li>
           <li>Bold mode: double or bust on Round 5</li>
           <li>Full scorecard & rematch</li>
         </ul>
       </div>
+      <div class="game-card chase reveal d3">
+        <div class="game-tag">Game 3</div>
+        <h3>The Chase</h3>
+        <p>A GPS running game. Pick a distance tier, get a random target, and race it — then chain a challenge to your friends to beat your time.</p>
+        <ul class="game-features">
+          <li>GPS-tracked distance, pace & calories</li>
+          <li>Easy to Elite distance tiers</li>
+          <li>Audio cues for headphone runners</li>
+          <li>Chained challenges — race your friends</li>
+          <li>Shared photo memories from every run</li>
+        </ul>
+      </div>
     </div>
     <div class="stats reveal">
       <div class="stat"><div class="stat-num">£0</div><div class="stat-label">Equipment needed. Ever.</div></div>
       <div class="stat"><div class="stat-num" data-target="100" data-append="%">0%</div><div class="stat-label">You, every single rep</div></div>
-      <div class="stat"><div class="stat-num" data-target="2">0</div><div class="stat-label">Games live — more coming</div></div>
+      <div class="stat"><div class="stat-num" data-target="3">0</div><div class="stat-label">Games live — more coming</div></div>
       <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Ways to push your limit</div></div>
     </div>
   </section>
@@ -476,7 +489,7 @@
   <!-- FOUNDERS -->
   <section class="section" style="padding-top:0">
     <div class="section-label reveal">The People Behind It</div>
-    <h2 class="reveal d1">Built by two people who wanted more from fitness.</h2>
+    <h2 class="reveal d1">Built by three people who wanted more from fitness.</h2>
     <div class="founder-grid">
       <div class="founder-card reveal d1">
         <div class="founder-initial"><span>T</span></div>
@@ -490,15 +503,11 @@
         <div class="founder-role">Co-Founder</div>
         <p>The creative force shaping VORSO's games, experience, and the challenge at the heart of it all.</p>
       </div>
-    </div>
-    <div class="vision-block reveal">
-      <div class="vision-quote">&ldquo;</div>
-      <p class="lead">Most people know they're capable of more. They just need the right push — something that makes going further feel less like suffering and more like a challenge worth taking on.</p>
-      <p class="body">VORSO started with a simple idea: what if your workout had stakes? What if every rep, every session, was part of something bigger — a game you're actively trying to win?</p>
-      <p class="body">We started with games. The vision is a platform: one where pushing your limits isn't a chore, it's the point. More competition, more challenge, a community built around always doing a little more than yesterday.</p>
-      <div class="vision-sig">
-        <div class="vision-sig-bar"></div>
-        <span>Taher & Ashutosh — Co-Founders of VORSO</span>
+      <div class="founder-card reveal d3">
+        <div class="founder-initial"><span>O</span></div>
+        <h3>Osama</h3>
+        <div class="founder-role">Co-Founder</div>
+        <p>Operations and strategy — turning the vision into a plan that scales, and keeping VORSO moving.</p>
       </div>
     </div>
   </section>
@@ -517,7 +526,7 @@
 
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Is it free?<span class="faq-icon">+</span></div>
-        <div class="faq-a">Yes. VORSO is free to download with no subscription. Both games — Card Battle Arena and The Call — are fully unlocked from day one.</div>
+        <div class="faq-a">Yes. VORSO is free to download with no subscription. All three games — Card Battle Arena, The Call, and The Chase — are fully unlocked from day one.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
@@ -533,6 +542,11 @@
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">What's The Call?<span class="faq-icon">+</span></div>
         <div class="faq-a">The Call is a precision rep game. Before you start, you predict exactly how many reps you'll do. Then you do them. Hit your number exactly and you score max points. Go over — that's a bust, and it's punished hard. Round 5 is Bold Mode: double your stake or fold. It rewards people who actually know their body.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What's The Chase?<span class="faq-icon">+</span></div>
+        <div class="faq-a">The Chase is a GPS running game. Pick a distance tier — Easy, Medium, Hard, or Elite — and VORSO sets you a random target. Head out and it tracks your distance, pace and calories live, with audio cues in your headphones so you never have to look at your phone. Finish and you can challenge friends to beat your time, chaining a race from person to person, and drop photos into a shared collage of the run.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
