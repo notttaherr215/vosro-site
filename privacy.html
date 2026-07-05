@@ -32,7 +32,7 @@
   <nav><a href="/">← VORSO</a></nav>
   <main>
     <h1>Privacy Policy</h1>
-    <p class="date">Last updated: 3 July 2026</p>
+    <p class="date">Last updated: 5 July 2026</p>
     <p class="intro">VORSO is a fitness platform built around card-based games, with a social layer where you can follow other people, share posts, compete on leaderboards, and cheer each other on. We believe your data belongs to you. This policy explains exactly what we collect, why, where it lives, who can see it, and what rights you have over it.</p>
 
     <h2>1. Who We Are</h2>
@@ -124,6 +124,18 @@
             <td>Until you turn location off, or delete your account</td>
           </tr>
           <tr>
+            <td><strong>Run tracking</strong> (The Chase) — distance, time, pace &amp; calories, measured from your device's <strong>precise GPS while a run is active</strong></td>
+            <td>Track your run and rank you on The Chase leaderboards. Your GPS <strong>route/map is processed on your device and is not uploaded</strong> — only the run summary (distance, time, pace, calories, score) is sent to us.</td>
+            <td>Run summary on AWS DynamoDB (US-East); your GPS route stays on your device</td>
+            <td>Until you delete your account</td>
+          </tr>
+          <tr>
+            <td><strong>Run photos</strong> (optional, The Chase) — photos you choose to add to a run challenge</td>
+            <td>Share "community memories" with the people in that challenge</td>
+            <td>AWS S3 (private bucket, US-East)</td>
+            <td>Until you delete the photo, or your account</td>
+          </tr>
+          <tr>
             <td><strong>Marketing &amp; safety preferences</strong> — marketing opt-in, safety acknowledgement, leaderboard opt-in, private-account setting</td>
             <td>Respect your choices about visibility and communications</td>
             <td>AWS DynamoDB (US-East) / your device</td>
@@ -144,7 +156,7 @@
         </tbody>
       </table>
     </div>
-    <p>We do <strong>not</strong> collect <strong>precise</strong> GPS location. If you choose to turn it on, we collect an <strong>approximate, city-level location</strong> to rank you on city/country leaderboards and show players near you — stored only as a coarse area label and a short geohash, never precise coordinates, and only requested at the moment you use those features. We do <strong>not</strong> collect health metrics from Apple Health, biometric data, or advertising identifiers. We do <strong>not</strong> currently use third-party analytics SDKs (no Firebase, Mixpanel, or equivalent). We may later introduce privacy-respecting, anonymized usage and performance analytics to improve the Service; where the law requires it, we will obtain your consent first.</p>
+    <p>When you run in <strong>The Chase</strong>, we use your device's <strong>precise GPS</strong> to measure your distance, pace and route — but <strong>only while a run is active</strong> (and only if you start one; it may keep tracking with the screen off, shown by the system location indicator). Crucially, your GPS route is <strong>processed on your device</strong>: we upload only your <strong>run summary</strong> (distance, time, pace, calories and score) to power the leaderboards — <strong>we do not upload your route or map</strong>. Separately and optionally, an <strong>approximate, city-level location</strong> (a coarse area label and short geohash, never precise coordinates) powers city/country leaderboards and "players near you". We do <strong>not</strong> collect health metrics from Apple Health, biometric data, or advertising identifiers. We do <strong>not</strong> currently use third-party analytics SDKs (no Firebase, Mixpanel, or equivalent). We may later introduce privacy-respecting, anonymized usage and performance analytics to improve the Service; where the law requires it, we will obtain your consent first.</p>
 
     <h2>3. What Stays on Your Device vs. What We Store</h2>
     <p><strong>On your device (and your private iCloud):</strong> your workout history, streaks, XP, personal bests, and profile photo. This is synced only between your device and <strong>your own iCloud account</strong> — it is not sent to VORSO's servers and is not accessible to us.</p>
@@ -163,7 +175,7 @@
     <p>Your real name and email are <strong>never</strong> shown to other users — only your chosen username.</p>
 
     <h2>5. Content Moderation &amp; Safety</h2>
-    <p>VORSO has <strong>zero tolerance for objectionable content or abusive behaviour</strong>. We provide in-app tools to <strong>block</strong> users and <strong>report</strong> users, posts, and comments. We review reports and take action — including removing content and disabling accounts — and we aim to act on reports of objectionable content within 24 hours. Continued or serious violations result in permanent removal from the Service. See our <a href="/terms.html">Terms of Service</a> for the full content policy.</p>
+    <p>VORSO has <strong>zero tolerance for objectionable content or abusive behaviour</strong>. We provide in-app tools to <strong>block</strong> users and <strong>report</strong> users, posts, comments, and photos. We review reports and take action — including removing content and disabling accounts — and we aim to act on reports of objectionable content within 24 hours. Continued or serious violations result in permanent removal from the Service. See our <a href="/terms.html">Terms of Service</a> for the full content policy.</p>
 
     <h2>6. Third-Party Services We Use</h2>
     <p>We use a small number of carefully selected services:</p>
