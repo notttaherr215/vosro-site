@@ -282,6 +282,14 @@
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s; font-size: 0.92rem; color: var(--muted); line-height: 1.75; }
     .faq-item.open .faq-a { max-height: 300px; padding: 0 26px 22px; }
 
+    /* TRUST STRIP */
+    .trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
+    .trust-pill {
+      font-size: 0.8rem; font-weight: 600; color: var(--muted);
+      padding: 7px 14px; border: 1px solid var(--border); border-radius: 999px;
+      background: rgba(255,255,255,0.02);
+    }
+
     /* APP STORE BADGE */
     .appstore-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
     .appstore-badge {
@@ -528,6 +536,11 @@
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Is my data private?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes — privacy is built in. Your real name is never shown; you pick a username. Your profile photo stays on your device and is never uploaded. Your scores and history sync privately through your own iCloud account, and there are no third-party analytics or ad trackers in the app. Keep your profile public, or go private and approve every follower — and you can block, report, or delete your account and its data at any time.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">What's The Call?<span class="faq-icon">+</span></div>
         <div class="faq-a">The Call is a precision rep game. Before you start, you predict exactly how many reps you'll do. Then you do them. Hit your number exactly and you score max points. Go over — that's a bust, and it's punished hard. Round 5 is Bold Mode: double your stake or fold. It rewards people who actually know their body.</div>
       </div>
@@ -562,6 +575,12 @@
         </div>
       </a>
       <p class="appstore-note">iOS 17+ · Free · No equipment · 18+ only</p>
+      <div class="trust-strip reveal d1">
+        <span class="trust-pill">🔒 Privacy-first</span>
+        <span class="trust-pill">🚫 No ads or trackers</span>
+        <span class="trust-pill">🙈 Real name never shown</span>
+        <span class="trust-pill">💳 No subscription</span>
+      </div>
     </div>
   </section>
 
