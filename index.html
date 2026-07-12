@@ -4,19 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VORSO — Train Like It's a Game</title>
-  <meta name="description" content="VORSO turns fitness into a game you want to win — a deck of reps, head-to-head rep-calling, or a GPS run. Climb global leaderboards, follow friends, and challenge anyone. Launching August 15 on iOS." />
+  <meta name="description" content="VORSO turns fitness into a game you want to win — a deck of reps, head-to-head rep-calling, a GPS run, or a lift PR. Every workout becomes a challenge your friends can take on. Launching August 15 on iOS." />
 
   <!-- Open Graph / social sharing -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://vorso.org/" />
   <meta property="og:title" content="VORSO — Train Like It's a Game" />
-  <meta property="og:description" content="Three games, one app: a deck of reps, head-to-head rep-calling, and a GPS run. Climb global leaderboards, follow friends, and challenge anyone. VORSO is fitness, gamified. Launching August 15 on iOS." />
+  <meta property="og:description" content="Four ways to play, one app: a deck of reps, head-to-head rep-calling, a GPS run, and lift PRs. Every workout becomes a challenge anyone can take on. VORSO is fitness, gamified. Launching August 15 on iOS." />
   <meta property="og:image" content="https://vorso.org/assets/og-image.png" />
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="VORSO — Train Like It's a Game" />
-  <meta name="twitter:description" content="Three games, one app: a deck of reps, head-to-head rep-calling, and a GPS run. Climb global leaderboards, follow friends, challenge anyone. Launching August 15 on iOS." />
+  <meta name="twitter:description" content="Four ways to play: a deck of reps, head-to-head rep-calling, a GPS run, and lift PRs. Every workout becomes a challenge anyone can take on. Launching August 15 on iOS." />
   <meta name="twitter:image" content="https://vorso.org/assets/og-image.png" />
 
   <!-- Favicon -->
@@ -223,6 +223,7 @@
 
     /* GAME CARDS */
     .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    @media (min-width: 980px) { .games { grid-template-columns: repeat(2, 1fr); } }
     .game-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 22px;
       padding: 36px 32px; position: relative; overflow: hidden;
@@ -233,6 +234,7 @@
     .game-card.arena::before { background: linear-gradient(90deg, var(--spade), var(--heart)); }
     .game-card.call::before { background: linear-gradient(90deg, var(--diamond), var(--club)); }
     .game-card.chase::before { background: linear-gradient(90deg, #2ec26b, #ff8c42); }
+    .game-card.lift::before { background: linear-gradient(90deg, #f5c842, #ff6b35); }
     .game-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
     .game-card h3 { font-size: 1.45rem; font-weight: 900; margin-bottom: 12px; }
     .game-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
@@ -425,10 +427,10 @@
   <!-- HOW IT WORKS -->
   <section class="section">
     <div class="section-label reveal">How to Play</div>
-    <h2 class="reveal d1">Three games.<br />One simple loop.</h2>
+    <h2 class="reveal d1">Four ways to play.<br />One simple loop.</h2>
     <p class="reveal d2">Whichever game you pick, it's the same rhythm — choose your challenge, put in the work, and watch it count. No equipment, no fudging.</p>
     <div class="steps">
-      <div class="step reveal d1"><div class="step-num">01</div><h3>Pick a Game</h3><p>Card Battle Arena (a deck of reps), The Call (call your reps), or The Chase (a GPS run). Each with its own twist.</p></div>
+      <div class="step reveal d1"><div class="step-num">01</div><h3>Pick a Game</h3><p>Card Battle Arena (a deck of reps), The Call (call your reps out loud), or The Chase — race a distance, or chase a lift PR.</p></div>
       <div class="step reveal d2"><div class="step-num">02</div><h3>Play &amp; Track</h3><p>Reps, rep-calls, or GPS distance &amp; pace — tracked live as you go. The app keeps you honest.</p></div>
       <div class="step reveal d3"><div class="step-num">03</div><h3>Beat Your Best</h3><p>Personal bests, daily streaks, XP, levelling — from Rookie to Legend. Every session counts.</p></div>
       <div class="step reveal d4"><div class="step-num">04</div><h3>Compete &amp; Connect</h3><p>Climb global and friends-only leaderboards, follow other athletes, and challenge anyone to beat you.</p></div>
@@ -437,9 +439,9 @@
 
   <!-- GAMES -->
   <section class="section" style="padding-top:0">
-    <div class="section-label reveal">Three Games. One App.</div>
+    <div class="section-label reveal">Four Ways to Play. One App.</div>
     <h2 class="reveal d1">Pick your mode.</h2>
-    <p class="reveal d2">Solo grind, head-to-head, or a race through the streets — VORSO has a game for every kind of athlete.</p>
+    <p class="reveal d2">Cards, nerve, a run, or a barbell — and whatever you do, someone can take it on and try to beat it.</p>
     <div class="games">
       <div class="game-card arena reveal d1">
         <div class="game-tag">Game 1</div>
@@ -456,9 +458,9 @@
       <div class="game-card call reveal d2">
         <div class="game-tag">Game 2</div>
         <h3>The Call</h3>
-        <p>Call your reps before you do them. Precision wins — and the asymmetric scoring punishes sandbaggers.</p>
+        <p>Call your reps out loud before you do them, then hit the number exactly. Go over and you bust. Two players, one phone — a pure duel of nerve.</p>
         <ul class="game-features">
-          <li>Solo or 1v1 precision rep prediction</li>
+          <li>2 players, one phone — no solo</li>
           <li>5 rounds with escalating multipliers</li>
           <li>Sealed commit — no peeking</li>
           <li>Bold mode: double or bust on Round 5</li>
@@ -466,22 +468,34 @@
         </ul>
       </div>
       <div class="game-card chase reveal d3">
-        <div class="game-tag">Game 3</div>
-        <h3>The Chase</h3>
-        <p>A GPS running game. Pick a distance tier, get a random target, and race it — then chain a challenge to your friends to beat your time.</p>
+        <div class="game-tag">Game 3 · The Chase</div>
+        <h3>The Chase — Run</h3>
+        <p>Pick a distance tier, get a random target, and race it. Then challenge your friends to beat your time.</p>
         <ul class="game-features">
           <li>GPS-tracked distance, pace & calories</li>
           <li>Easy to Elite distance tiers</li>
           <li>Audio cues for headphone runners</li>
           <li>Chained challenges — race your friends</li>
-          <li>Shared photo memories from every run</li>
+          <li>Your route never leaves your phone</li>
+        </ul>
+      </div>
+      <div class="game-card lift reveal d3">
+        <div class="game-tag">Game 4 · The Chase</div>
+        <h3>The Chase — Lift</h3>
+        <p>Chase a PR instead of a distance. Log your bench, squat or deadlift, film your form — and put the number on your profile for someone to come after.</p>
+        <ul class="game-features">
+          <li>Log PRs — weight, reps & est. 1RM</li>
+          <li>Film your form (video stays on your phone)</li>
+          <li>PRs sit on your profile — friends tap "Beat it"</li>
+          <li>Personal records ranked per exercise</li>
+          <li>Keep any lift private if you want</li>
         </ul>
       </div>
     </div>
     <div class="stats reveal">
       <div class="stat"><div class="stat-num">£0</div><div class="stat-label">Equipment needed. Ever.</div></div>
       <div class="stat"><div class="stat-num" data-target="100" data-append="%">0%</div><div class="stat-label">You, every single rep</div></div>
-      <div class="stat"><div class="stat-num" data-target="3">0</div><div class="stat-label">Game modes at launch</div></div>
+      <div class="stat"><div class="stat-num" data-target="4">0</div><div class="stat-label">Ways to play at launch</div></div>
       <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Ways to push your limit</div></div>
     </div>
   </section>
@@ -526,32 +540,32 @@
 
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Is it free?<span class="faq-icon">+</span></div>
-        <div class="faq-a">Yes. VORSO is free to download with no subscription. All three games — Card Battle Arena, The Call, and The Chase — are fully unlocked from day one.</div>
+        <div class="faq-a">Yes. VORSO is free to download with no subscription. Everything — Card Battle Arena, The Call, and The Chase (both the run and the lift side) — is fully unlocked from day one.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">How does multiplayer work?<span class="faq-icon">+</span></div>
-        <div class="faq-a">Card Battle Arena supports 2–4 players on a single device. Everyone does the same card each round — one person goes at a time while the rest rest. The Call is a 1v1 game where both players compete in the same session, sealing their rep commitments before each round.</div>
+        <div class="faq-a">Card Battle Arena supports 2–4 players on a single device. Everyone does the same card each round — one person goes at a time while the rest rest. The Call is a two-player duel on one phone — both players seal their rep call before each round, then perform in turn.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Can I compete with friends?<span class="faq-icon">+</span></div>
-        <div class="faq-a">Yes — VORSO is social. Every session ranks you on global and friends-only leaderboards. Follow other athletes, see their sessions and posts in your feed, cheer each other on with kudos and comments, and challenge anyone to beat your best. Keep your profile public, or go private and approve who follows you. Your real name is never shown — only the username you choose.</div>
+        <div class="faq-a">That's the whole point. Finish a workout and it becomes a <strong>challenge</strong> — the exact same deck, frozen — that anyone can take on and try to beat. Post it to your feed, send it straight to a friend, or share a link. Browse the <strong>Discover</strong> tab to take on challenges from anyone, not just people you follow. Someone's bench PR on their profile? Tap <strong>&ldquo;Beat it&rdquo;</strong>. You'll get a notification when somebody joins your challenge — or beats your number. There are global, country, city and friends-only leaderboards too, plus a feed, kudos and comments. Your real name is never shown — only the username you choose.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">Is my data private?<span class="faq-icon">+</span></div>
-        <div class="faq-a">Yes — privacy is built in. Your real name is never shown; you pick a username. Your profile photo stays on your device and is never uploaded. Your scores and history sync privately through your own iCloud account, and there are no third-party analytics or ad trackers in the app. Keep your profile public, or go private and approve every follower — and you can block, report, or delete your account and its data at any time.</div>
+        <div class="faq-a">Yes — and we took the harder engineering path on purpose. <strong>The GPS route of your run never leaves your phone</strong> — we upload only the summary (distance, time, pace), never the map of where you live and run. <strong>Form videos of your lifts never leave your phone either</strong> — only the PR number is shared, so friends can chase it. Your profile photo is device-only. Your real name is never shown; you pick a username. No third-party analytics, no ad trackers, no data sold — ever. Keep your profile public or go private and approve every follower, and you can block, report, export or delete your account and all its data at any time.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">What's The Call?<span class="faq-icon">+</span></div>
-        <div class="faq-a">The Call is a precision rep game. Before you start, you predict exactly how many reps you'll do. Then you do them. Hit your number exactly and you score max points. Go over — that's a bust, and it's punished hard. Round 5 is Bold Mode: double your stake or fold. It rewards people who actually know their body.</div>
+        <div class="faq-a">The Call is our signature game — <strong>a duel of nerve for two players on one phone</strong>. You secretly call how many reps you'll do (the other player looks away), you seal it, then you perform. Hit your number <strong>exactly</strong> and you score max points. Go over and you <strong>bust</strong> — punished hard. Undershoot and you leave points on the table. Round 5 is Bold Mode: double or nothing. It isn't about who's fittest — it's about who actually knows their body. There is no solo version; the whole game is calling your shot in front of someone else.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">What's The Chase?<span class="faq-icon">+</span></div>
-        <div class="faq-a">The Chase is a GPS running game. Pick a distance tier — Easy, Medium, Hard, or Elite — and VORSO sets you a random target. Head out and it tracks your distance, pace and calories live, with audio cues in your headphones so you never have to look at your phone. Finish and you can challenge friends to beat your time, chaining a race from person to person, and drop photos into a shared collage of the run.</div>
+        <div class="faq-a">The Chase has two halves — you chase a distance, or you chase a PR. <strong>Run:</strong> pick a tier (Easy to Elite), VORSO sets a random target, and it tracks distance, pace and calories live with audio cues in your headphones. Your GPS route never leaves your phone — only the summary. <strong>Lift:</strong> log a PR (bench, squat, deadlift — anything), film your form, and the number goes on your profile so friends can tap "Beat it" and come after it. The video stays on your device.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
