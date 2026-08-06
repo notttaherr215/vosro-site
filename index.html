@@ -4,19 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VORSO — Train Like It's a Game</title>
-  <meta name="description" content="VORSO turns fitness into a game you want to win — a deck of reps, head-to-head rep-calling, a GPS run, or a lift PR. Every workout becomes a challenge your friends can take on. Launching August 15 on iOS." />
+  <meta name="description" content="VORSO turns fitness into a game you want to win — a deck of reps, head-to-head rep-calling, a GPS run, or a lift PR. Every workout becomes a challenge your friends can take on. Out now — free on iOS." />
 
   <!-- Open Graph / social sharing -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://vorso.org/" />
   <meta property="og:title" content="VORSO — Train Like It's a Game" />
-  <meta property="og:description" content="Four ways to play, one app: a deck of reps, head-to-head rep-calling, a GPS run, and lift PRs. Every workout becomes a challenge anyone can take on. VORSO is fitness, gamified. Launching August 15 on iOS." />
+  <meta property="og:description" content="Four ways to play, one app: a deck of reps, head-to-head rep-calling, a GPS run, and lift PRs. Every workout becomes a challenge anyone can take on. VORSO is fitness, gamified. Out now — free on iOS." />
   <meta property="og:image" content="https://vorso.org/assets/og-image.png" />
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="VORSO — Train Like It's a Game" />
-  <meta name="twitter:description" content="Four ways to play: a deck of reps, head-to-head rep-calling, a GPS run, and lift PRs. Every workout becomes a challenge anyone can take on. Launching August 15 on iOS." />
+  <meta name="twitter:description" content="Four ways to play: a deck of reps, head-to-head rep-calling, a GPS run, and lift PRs. Every workout becomes a challenge anyone can take on. Out now — free on iOS." />
   <meta name="twitter:image" content="https://vorso.org/assets/og-image.png" />
 
   <!-- Favicon -->
@@ -299,9 +299,10 @@
       display: inline-flex; align-items: center; gap: 12px;
       background: var(--surface); border: 1px solid rgba(74,158,255,0.3);
       border-radius: 14px; padding: 14px 28px; text-decoration: none;
-      opacity: 0.6; cursor: default; pointer-events: none;
-      transition: opacity 0.2s;
+      opacity: 1; cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s, border-color 0.2s;
     }
+    .appstore-badge:hover { opacity: 0.9; transform: scale(1.03); border-color: var(--blue); }
     .appstore-badge svg { width: 24px; height: 24px; fill: var(--white); flex-shrink: 0; }
     .appstore-badge-text { text-align: left; }
     .appstore-badge-text span { display: block; font-size: 0.7rem; color: var(--muted); }
@@ -357,7 +358,7 @@
           <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg>
         </a>
       </div>
-      <a href="#waitlist" class="nav-cta">Join the Waitlist</a>
+      <a href="https://apps.apple.com/app/id6774965681" class="nav-cta">Download</a>
     </div>
   </nav>
 
@@ -366,22 +367,14 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <div class="badge"><div class="badge-dot"></div> Launching August 15, 2026</div>
+    <div class="badge"><div class="badge-dot"></div> Out now on iOS</div>
     <h1>Train Like<br /><span class="grad">It's a Game.</span></h1>
     <p>Race through rep decks, call your numbers head-to-head, and chase GPS runs — then climb global leaderboards, follow friends, and challenge anyone to beat your best.</p>
 
-    <!-- COUNTDOWN -->
-    <div class="countdown-wrap reveal">
-      <div class="countdown-label">App launches in</div>
-      <div class="countdown">
-        <div class="cd-block"><div class="cd-num" id="cd-days">00</div><div class="cd-unit">Days</div></div>
-        <div class="cd-sep">:</div>
-        <div class="cd-block"><div class="cd-num" id="cd-hours">00</div><div class="cd-unit">Hours</div></div>
-        <div class="cd-sep">:</div>
-        <div class="cd-block"><div class="cd-num" id="cd-mins">00</div><div class="cd-unit">Mins</div></div>
-        <div class="cd-sep">:</div>
-        <div class="cd-block"><div class="cd-num" id="cd-secs">00</div><div class="cd-unit">Secs</div></div>
-      </div>
+    <!-- DOWNLOAD -->
+    <div class="reveal" style="margin-bottom:52px;">
+      <a class="cta-btn" href="https://apps.apple.com/app/id6774965681">Download on the App Store →</a>
+      <p style="font-size:0.8rem;color:var(--muted);margin-top:14px;">iOS 17+ · Free · No subscription</p>
     </div>
 
     <!-- CARD DEMO -->
@@ -398,18 +391,18 @@
 
     <!-- WAITLIST -->
     <div class="signup-section reveal d2" id="waitlist">
-      <h2>Be First In.</h2>
-      <p>Drop your details and we'll notify you the moment VORSO drops on the App Store.</p>
+      <h2>Android's coming.</h2>
+      <p>VORSO is live on iOS today. Drop your email and we'll tell you the moment the Android version lands.</p>
       <form class="form-row" id="waitlist-form">
         <input type="text" id="wl-name" placeholder="Your name" required />
         <input type="email" id="wl-email" placeholder="Your email address" required />
-        <button type="submit" id="wl-btn">Join the Waitlist →</button>
+        <button type="submit" id="wl-btn">Notify me →</button>
       </form>
-      <p style="font-size:0.8rem;color:var(--muted);margin-top:12px;">One email when VORSO launches. No spam. · Built for 18+ — exercise within your limits.</p>
+      <p style="font-size:0.8rem;color:var(--muted);margin-top:12px;">One email when Android's ready. No spam. · Built for 18+ — exercise within your limits.</p>
       <div class="success-msg" id="success-msg">
         <div style="font-size:2.5rem;margin-bottom:10px;">🎉</div>
         <div class="success-headline" style="font-size:1.15rem;margin-bottom:6px;">You're on the list.</div>
-        <div style="font-size:0.88rem;color:var(--muted);font-weight:400;margin-bottom:28px;">We'll hit you on August 15 when VORSO drops.</div>
+        <div style="font-size:0.88rem;color:var(--muted);font-weight:400;margin-bottom:28px;">We'll email you the moment the Android version's ready.</div>
         <div style="border-top:1px solid var(--border);padding-top:24px;text-align:left;">
           <p style="font-size:0.9rem;font-weight:700;color:var(--white);margin-bottom:6px;">While you're here — what are you hoping VORSO will do for you?</p>
           <p style="font-size:0.82rem;color:var(--muted);margin-bottom:14px;">Takes 30 seconds. Helps us build the right thing.</p>
@@ -420,7 +413,7 @@
           <div id="feedback-sent" style="display:none;font-size:0.88rem;color:var(--muted);padding:10px 0;">Thanks — that really helps 🙏</div>
         </div>
       </div>
-      <p class="form-note">No spam. One email when we launch, that's it. By joining, you agree to our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</p>
+      <p class="form-note">No spam. One email when Android's ready, that's it. By joining, you agree to our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</p>
     </div>
   </section>
 
@@ -449,7 +442,7 @@
         <p>Work through a shuffled deck of 13, 26, or 52 cards. Solo practice or local multiplayer — fastest total time wins.</p>
         <ul class="game-features">
           <li>Solo & multiplayer (2–4 players)</li>
-          <li>42 bodyweight exercises</li>
+          <li>A curated bodyweight exercise library</li>
           <li>Personal bests & streak tracking</li>
           <li>XP levelling from Rookie to Legend</li>
           <li>Session goals & custom exercises</li>
@@ -570,7 +563,7 @@
 
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">What platforms will VORSO be on?<span class="faq-icon">+</span></div>
-        <div class="faq-a">iOS first, launching August 15. Android and a web version are on the roadmap — join the waitlist and we'll keep you posted.</div>
+        <div class="faq-a">Out now on iOS. Android and a web version are on the roadmap — drop your email above and we'll keep you posted.</div>
       </div>
 
       <div class="faq-item" onclick="toggleFaq(this)">
@@ -584,11 +577,11 @@
   <!-- APP STORE -->
   <section class="section" style="padding-top:0; text-align:center">
     <div class="appstore-wrap reveal">
-      <p style="font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Available August 15, 2026</p>
-      <a class="appstore-badge" href="#waitlist">
+      <p style="font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Out now</p>
+      <a class="appstore-badge" href="https://apps.apple.com/app/id6774965681">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         <div class="appstore-badge-text">
-          <span>Coming August 15 to the</span>
+          <span>Download on the</span>
           <strong>App Store</strong>
         </div>
       </a>
@@ -605,8 +598,8 @@
   <!-- BOTTOM CTA -->
   <section class="cta-section">
     <h2 class="reveal">Ready to compete?</h2>
-    <p class="reveal d1">VORSO drops on iOS August 15. Get early access now.</p>
-    <a href="#waitlist" class="cta-btn reveal d2">Join the Waitlist →</a>
+    <p class="reveal d1">VORSO is out now on iOS — free, no subscription.</p>
+    <a href="https://apps.apple.com/app/id6774965681" class="cta-btn reveal d2">Download on the App Store →</a>
   </section>
 
   <!-- FOOTER -->
@@ -660,19 +653,6 @@
     }), { threshold: 0.3 });
     document.querySelectorAll('.stats').forEach(el => so.observe(el));
 
-    /* Countdown */
-    const launch = new Date('2026-08-15T00:00:00');
-    function tick() {
-      const diff = launch - Date.now();
-      if (diff <= 0) { document.querySelector('.countdown-wrap').innerHTML = '<div class="countdown-label" style="font-size:1.1rem;color:var(--white)">VORSO is Live on the App Store!</div>'; return; }
-      const d = Math.floor(diff/864e5), h = Math.floor((diff%864e5)/36e5), m = Math.floor((diff%36e5)/6e4), s = Math.floor((diff%6e4)/1e3);
-      document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
-      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-      document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
-      document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
-    }
-    tick(); setInterval(tick, 1000);
-
     /* Card demo */
     const ranks = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
     const reps = {2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10,J:11,Q:12,K:13,A:14};
@@ -720,10 +700,10 @@
             waitlistForm.style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
           } else {
-            btn.textContent = 'Join the Waitlist →'; btn.disabled = false;
+            btn.textContent = 'Notify me →'; btn.disabled = false;
           }
         } catch {
-          btn.textContent = 'Join the Waitlist →'; btn.disabled = false;
+          btn.textContent = 'Notify me →'; btn.disabled = false;
         }
       });
     }
