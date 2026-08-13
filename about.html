@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VORSO — About Us</title>
+  <title>VORSO — Our Journey</title>
   <meta name="description" content="The people behind VORSO and why we built it — a small independent team turning workouts into a game, built privacy-first." />
   <meta property="og:title" content="VORSO — About Us" />
   <meta property="og:description" content="Meet the team behind VORSO and why we built it." />
@@ -54,37 +54,37 @@
     @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
     .chero h1 { position: relative; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 900; line-height: 1.06; letter-spacing: -0.03em; max-width: 880px; margin: 0 auto 20px; }
     .grad { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .chero > p { position: relative; font-size: clamp(1rem, 2vw, 1.18rem); color: var(--muted); max-width: 640px; margin: 0 auto; line-height: 1.7; }
+    .chero > p { position: relative; font-size: clamp(1.12rem, 2.2vw, 1.32rem); color: var(--muted); max-width: 660px; margin: 0 auto; line-height: 1.78; }
 
     /* SECTIONS */
-    .section { max-width: 1040px; margin: 0 auto; padding: 70px 24px; }
-    .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; }
-    .section h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .section { max-width: 1040px; margin: 0 auto; padding: 96px 24px; text-align: center; }
+    .section-label { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 18px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; }
+    .section h2 { font-size: clamp(2.05rem, 4.6vw, 3rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 22px; }
 
     /* STORY */
-    .story { max-width: 760px; }
-    .story p { color: #b9b9cc; font-size: 1.08rem; line-height: 1.85; margin-bottom: 22px; }
+    .story { max-width: 720px; margin: 0 auto; text-align: left; }
+    .story p { color: #c2c2d2; font-size: 1.2rem; line-height: 1.9; margin-bottom: 26px; }
     .story p strong { color: var(--white); font-weight: 700; }
 
     /* FOUNDERS */
-    .founder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .founder-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; transition: transform 0.2s; position: relative; overflow: hidden; }
+    .founder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .founder-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 34px 30px; transition: transform 0.2s; position: relative; overflow: hidden; text-align: center; }
     .founder-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); }
     .founder-card:hover { transform: translateY(-4px); }
-    .founder-photo { position: relative; width: 100%; height: 300px; border-radius: 16px; overflow: hidden; margin-bottom: 22px; background: rgba(74,158,255,0.08); border: 1px solid rgba(74,158,255,0.15); display: flex; align-items: center; justify-content: center; }
+    .founder-photo { position: relative; width: 100%; aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; margin-bottom: 22px; background: rgba(74,158,255,0.08); border: 1px solid rgba(74,158,255,0.15); display: flex; align-items: center; justify-content: center; }
     .founder-photo .mono { font-size: 3rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .founder-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .founder-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 4px; }
+    .founder-card h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 6px; }
     .founder-role { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 14px; display: inline-block; }
-    .founder-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
-    .founder-card p.founder-quote { margin-top: 14px; padding-left: 14px; border-left: 2px solid rgba(74,158,255,0.55); font-style: italic; color: #c3c3d4; font-size: 0.9rem; line-height: 1.72; }
+    .founder-card p { font-size: 1.02rem; color: var(--muted); line-height: 1.75; }
+    .founder-card p.founder-quote { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); font-style: italic; color: #cfcfdc; font-size: 1.04rem; line-height: 1.75; }
 
     /* VALUES */
     .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-    .value { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 28px 26px; }
-    .value .vmark { font-size: 1.6rem; margin-bottom: 14px; }
-    .value h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
-    .value p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+    .value { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 34px 28px; text-align: center; }
+    .value .vmark { font-size: 1.9rem; margin-bottom: 16px; }
+    .value h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; }
+    .value p { font-size: 1rem; color: var(--muted); line-height: 1.7; }
 
     /* CTA */
     .cta-section { text-align: center; padding: 90px 24px; position: relative; overflow: hidden; }
@@ -122,7 +122,7 @@
   <nav id="nav">
     <div class="nav-left">
       <a href="/" class="nav-logo"><img src="/assets/vorso-logo.png" alt="VORSO" /></a>
-      <a href="/about.html" class="nav-link active">About</a>
+      <a href="/about.html" class="nav-link active">Our Journey</a>
       <a href="/creators.html" class="nav-link">For Creators</a>
     </div>
     <div class="nav-right">
@@ -141,7 +141,7 @@
   <!-- HERO -->
   <header class="chero">
     <div class="hero-bg"></div>
-    <div class="badge"><div class="badge-dot"></div> About VORSO</div>
+    <div class="badge"><div class="badge-dot"></div> Our Journey</div>
     <h1>Built by three people who wanted <span class="grad">more from fitness.</span></h1>
     <p>We're a small, independent team on a simple mission: make training feel like a game you actually want to win — and do it without selling anyone's data.</p>
   </header>
@@ -164,21 +164,21 @@
     <h2 class="reveal d1">The people behind it.</h2>
     <div class="founder-grid">
       <div class="founder-card reveal d1">
-        <div class="founder-photo"><span class="mono">T</span><img src="/assets/founders/taher.jpg" alt="Taher" style="object-position:50% 18%" onerror="this.remove()" /></div>
+        <div class="founder-photo"><span class="mono">T</span><img src="/assets/founders/taher.jpg?v=2" alt="Taher hiking in the Lake District" onerror="this.remove()" /></div>
         <h3>Taher</h3>
         <div class="founder-role">Founder · Product &amp; Engineering</div>
         <p>Drives VORSO's product, engineering and vision — building the platform end to end, from the games to the leaderboards to the social layer.</p>
         <p class="founder-quote">"I've always been in the gym, pushing my limits and competing — but staying consistent was my own biggest challenge. I realised how many people are just like me: they want to progress and grow, and it's consistency that holds them back. I built VORSO to tackle exactly that — to make training something you actually want to keep coming back to."</p>
       </div>
       <div class="founder-card reveal d2">
-        <div class="founder-photo"><span class="mono">A</span><img src="/assets/founders/ashutosh.jpg" alt="Ashutosh" style="object-position:50% 64%" onerror="this.remove()" /></div>
+        <div class="founder-photo"><span class="mono">A</span><img src="/assets/founders/ashutosh.jpg?v=2" alt="Ashutosh at a race finish" onerror="this.remove()" /></div>
         <h3>Ashutosh</h3>
         <div class="founder-role">Co-Founder · Game Design &amp; Market</div>
         <p>An engineering professional with deep roots in sports business — from operations at a major football club to running large-scale sports initiatives. Shapes VORSO's games, experience, and the challenge at its heart.</p>
         <p class="founder-quote">"Running and sport have always been my thing — and so has getting other people into it. There's nothing better than helping someone find their stride and stick with it. That's what drives me at VORSO: making the games something anyone can pick up, and building them to be inclusive and sustainable — so everyone gets a real shot at pushing themselves."</p>
       </div>
       <div class="founder-card reveal d3">
-        <div class="founder-photo"><span class="mono">O</span><img src="/assets/founders/osama.jpg" alt="Osama" style="object-position:50% 20%" onerror="this.remove()" /></div>
+        <div class="founder-photo"><span class="mono">O</span><img src="/assets/founders/osama.jpg?v=2" alt="Osama at a stadium" onerror="this.remove()" /></div>
         <h3>Osama</h3>
         <div class="founder-role">Co-Founder · Operations &amp; Strategy</div>
         <p>Leads operations and strategy — scaling VORSO and turning the vision into a plan that reaches people everywhere.</p>
