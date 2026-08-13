@@ -52,7 +52,7 @@
     .nav-social a:hover { color: var(--white); transform: scale(1.1); }
     .nav-social svg { width: 26px; height: 26px; fill: currentColor; }
     .nav-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; white-space: nowrap; transition: color 0.2s; }
-    .nav-link:hover { color: var(--white); }
+    .nav-link:hover, .nav-link.active { color: var(--white); }
     .nav-cta {
       background: var(--grad); color: #fff; font-weight: 700; font-size: 0.85rem;
       padding: 10px 24px; border-radius: 100px; text-decoration: none;
@@ -162,7 +162,8 @@
   <nav id="nav">
     <div class="nav-left">
       <a href="/" class="nav-logo"><img src="/assets/vorso-logo.png" alt="VORSO" /></a>
-      <a href="/" class="nav-link">Home</a>
+      <a href="/about.html" class="nav-link">About</a>
+      <a href="/creators.html" class="nav-link active">For Creators</a>
     </div>
     <div class="nav-right">
       <div class="nav-social">
@@ -264,7 +265,7 @@
         <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg>
       </a>
     </div>
-    <div class="flinks"><a href="/">Home</a> · <a href="/support.html">Support</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>
+    <div class="flinks"><a href="/">Home</a> · <a href="/about.html">About</a> · <a href="/support.html">Support</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>
   </footer>
 
   <script>

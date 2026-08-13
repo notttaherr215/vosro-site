@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VORSO — About Us</title>
+  <meta name="description" content="The people behind VORSO and why we built it — a small independent team turning workouts into a game, built privacy-first." />
+  <meta property="og:title" content="VORSO — About Us" />
+  <meta property="og:description" content="Meet the team behind VORSO and why we built it." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vorso.org/about.html" />
+  <style>
+    :root {
+      --bg: #07070d; --surface: #10101a; --surface2: #161624; --border: #1c1c2e;
+      --blue: #4a9eff; --orange: #ff6b35; --gold: #f5c842; --white: #efefef; --muted: #6b6b8a;
+      --grad: linear-gradient(135deg, var(--blue), var(--orange));
+      --spade: #4a9eff; --heart: #ff5f7e; --diamond: #ff9f43; --club: #6bcb77;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    a { color: inherit; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(7,7,13,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: padding 0.3s; }
+    nav.scrolled { padding: 12px 48px; }
+    .nav-left { display: flex; align-items: center; gap: 28px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 120px; width: auto; display: block; transition: height 0.3s; }
+    nav.scrolled .nav-logo img { height: 88px; }
+    .nav-right { display: flex; align-items: center; gap: 22px; }
+    .nav-social { display: flex; align-items: center; gap: 18px; }
+    .nav-social a { display: inline-flex; color: var(--muted); transition: color 0.2s, transform 0.15s; }
+    .nav-social a:hover { color: var(--white); transform: scale(1.1); }
+    .nav-social svg { width: 26px; height: 26px; fill: currentColor; }
+    .nav-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; white-space: nowrap; transition: color 0.2s; }
+    .nav-link:hover, .nav-link.active { color: var(--white); }
+    .nav-cta { background: var(--grad); color: #fff; font-weight: 700; font-size: 0.85rem; padding: 10px 24px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s, transform 0.15s; box-shadow: 0 4px 20px rgba(74,158,255,0.25); }
+    .nav-cta:hover { opacity: 0.88; transform: scale(1.04); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+
+    /* HERO */
+    .chero { position: relative; overflow: hidden; text-align: center; padding: 210px 24px 60px; }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 70% 50% at 30% 30%, rgba(74,158,255,0.08) 0%, transparent 60%), radial-gradient(ellipse 70% 50% at 70% 60%, rgba(255,107,53,0.08) 0%, transparent 60%); }
+    .badge { position: relative; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(74,158,255,0.3); background: rgba(74,158,255,0.08); color: var(--blue); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 18px; border-radius: 100px; margin-bottom: 28px; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
+    .chero h1 { position: relative; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 900; line-height: 1.06; letter-spacing: -0.03em; max-width: 880px; margin: 0 auto 20px; }
+    .grad { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .chero > p { position: relative; font-size: clamp(1rem, 2vw, 1.18rem); color: var(--muted); max-width: 640px; margin: 0 auto; line-height: 1.7; }
+
+    /* SECTIONS */
+    .section { max-width: 1040px; margin: 0 auto; padding: 70px 24px; }
+    .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; }
+    .section h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 14px; }
+
+    /* STORY */
+    .story { max-width: 760px; }
+    .story p { color: #b9b9cc; font-size: 1.08rem; line-height: 1.85; margin-bottom: 22px; }
+    .story p strong { color: var(--white); font-weight: 700; }
+
+    /* FOUNDERS */
+    .founder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .founder-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; transition: transform 0.2s; position: relative; overflow: hidden; }
+    .founder-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); }
+    .founder-card:hover { transform: translateY(-4px); }
+    .founder-photo { position: relative; width: 88px; height: 88px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; background: rgba(74,158,255,0.1); border: 1px solid rgba(74,158,255,0.2); display: flex; align-items: center; justify-content: center; }
+    .founder-photo .mono { font-size: 1.9rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .founder-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .founder-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 4px; }
+    .founder-role { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 14px; display: inline-block; }
+    .founder-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+
+    /* VALUES */
+    .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .value { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 28px 26px; }
+    .value .vmark { font-size: 1.6rem; margin-bottom: 14px; }
+    .value h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
+    .value p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* CTA */
+    .cta-section { text-align: center; padding: 90px 24px; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(74,158,255,0.06) 0%, rgba(255,107,53,0.04) 50%, transparent 70%); pointer-events: none; }
+    .cta-section h2 { position: relative; font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 900; letter-spacing: -0.03em; max-width: 600px; margin: 0 auto 16px; }
+    .cta-section p { position: relative; color: var(--muted); font-size: 1.02rem; margin-bottom: 34px; }
+    .cta-row { position: relative; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-btn { display: inline-block; background: var(--grad); color: #fff; font-weight: 800; font-size: 1.02rem; padding: 15px 36px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 8px 32px rgba(74,158,255,0.25); }
+    .cta-btn.ghost { background: var(--surface); border: 1px solid var(--border); box-shadow: none; }
+    .cta-btn:hover { opacity: 0.9; transform: scale(1.04); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-social { display: flex; align-items: center; gap: 18px; }
+    .footer-social a { display: inline-flex; color: var(--muted); transition: color 0.2s; }
+    .footer-social a:hover { color: var(--white); }
+    .footer-social svg { width: 20px; height: 20px; fill: currentColor; }
+    footer p { font-size: 0.8rem; color: var(--muted); }
+    footer .flinks a { color: var(--muted); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+    footer .flinks a:hover { color: var(--white); }
+
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      nav.scrolled { padding: 10px 20px; }
+      .nav-logo img { height: 84px; }
+      nav.scrolled .nav-logo img { height: 64px; }
+      .nav-link { display: none; }
+      .chero { padding-top: 160px; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-left">
+      <a href="/" class="nav-logo"><img src="/assets/vorso-logo.png" alt="VORSO" /></a>
+      <a href="/about.html" class="nav-link active">About</a>
+      <a href="/creators.html" class="nav-link">For Creators</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-social">
+        <a href="https://instagram.com/playvorso" target="_blank" rel="noopener noreferrer" aria-label="VORSO on Instagram">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C20.85 1.35 20.18.94 19.39.63 18.63.33 17.75.13 16.48.07 15.2.01 14.79 0 11.53 0h.47zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.4a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+        </a>
+        <a href="https://x.com/playvorso" target="_blank" rel="noopener noreferrer" aria-label="VORSO on X">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg>
+        </a>
+      </div>
+      <a href="https://apps.apple.com/app/id6774965681" class="nav-cta">Download</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="chero">
+    <div class="hero-bg"></div>
+    <div class="badge"><div class="badge-dot"></div> About VORSO</div>
+    <h1>Built by three people who wanted <span class="grad">more from fitness.</span></h1>
+    <p>We're a small, independent team on a simple mission: make training feel like a game you actually want to win — and do it without selling anyone's data.</p>
+  </header>
+
+  <!-- OUR STORY -->
+  <section class="section" style="padding-top:30px">
+    <div class="section-label reveal">Our story</div>
+    <h2 class="reveal d1">Why we built VORSO.</h2>
+    <div class="story reveal d2">
+      <p>Every fitness app turns your workout into a chore — a checklist to tick, a streak to protect, another subscription to cancel. We wanted the opposite. We wanted training to feel like <strong>a game you actually want to win.</strong></p>
+      <p>So we built one. Four ways to play: a shuffled deck of cards that sets your reps, a two-player duel of nerve where you call your number and hit it exactly, a GPS chase against a target, and a race to a new personal record. Wrapped around all of it — <strong>leaderboards, challenges, and a feed where friends can take on your best and try to beat it.</strong></p>
+      <p>And we built it <strong>privacy-first, on purpose.</strong> Your GPS route and your form videos never leave your phone. Your real name is never shown — you pick a username. No ads, no trackers, no data sold. Competition shouldn't cost you your privacy.</p>
+      <p>VORSO is live on the App Store today, with Android and a lot more on the way. We're just getting started — and we'd love you along for it.</p>
+    </div>
+  </section>
+
+  <!-- FOUNDERS -->
+  <section class="section" style="padding-top:0">
+    <div class="section-label reveal">The team</div>
+    <h2 class="reveal d1">The people behind it.</h2>
+    <div class="founder-grid">
+      <div class="founder-card reveal d1">
+        <div class="founder-photo"><span class="mono">T</span><img src="/assets/founders/taher.jpg" alt="Taher" onerror="this.remove()" /></div>
+        <h3>Taher</h3>
+        <div class="founder-role">Founder · Product &amp; Engineering</div>
+        <p>Drives VORSO's product, engineering and vision — building the platform end to end, from the games to the leaderboards to the social layer.</p>
+      </div>
+      <div class="founder-card reveal d2">
+        <div class="founder-photo"><span class="mono">A</span><img src="/assets/founders/ashutosh.jpg" alt="Ashutosh" onerror="this.remove()" /></div>
+        <h3>Ashutosh</h3>
+        <div class="founder-role">Co-Founder · Game Design &amp; Market</div>
+        <p>An engineering professional with deep roots in sports business — from operations at a major football club to running large-scale sports initiatives. Shapes VORSO's games, experience, and the challenge at its heart.</p>
+      </div>
+      <div class="founder-card reveal d3">
+        <div class="founder-photo"><span class="mono">O</span><img src="/assets/founders/osama.jpg" alt="Osama" onerror="this.remove()" /></div>
+        <h3>Osama</h3>
+        <div class="founder-role">Co-Founder · Operations &amp; Strategy</div>
+        <p>Leads operations and strategy — scaling VORSO and turning the vision into a plan that reaches people everywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE BELIEVE -->
+  <section class="section" style="padding-top:0">
+    <div class="section-label reveal">What we believe</div>
+    <h2 class="reveal d1">Four things we won't compromise on.</h2>
+    <div class="values">
+      <div class="value reveal d1"><div class="vmark">🎮</div><h3>Training is a game</h3><p>Reps, runs and PRs should feel like something you want to win — not a chore you have to survive.</p></div>
+      <div class="value reveal d2"><div class="vmark">🔒</div><h3>Your data is yours</h3><p>Routes and form videos stay on your device. Your real name is never shown. No trackers, no data sold.</p></div>
+      <div class="value reveal d3"><div class="vmark">🚪</div><h3>No walls</h3><p>Free to play. No subscription, no equipment, no paywalled games. Just you, every rep.</p></div>
+      <div class="value reveal d4"><div class="vmark">🏆</div><h3>Compete, together</h3><p>Leaderboards, challenges and a feed that pushes you — with friends, not against a lonely streak.</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="reveal">Come train with us.</h2>
+    <p class="reveal d1">VORSO is out now on iOS — free, no subscription.</p>
+    <div class="cta-row reveal d2">
+      <a href="https://apps.apple.com/app/id6774965681" class="cta-btn">Download on the App Store →</a>
+      <a href="/creators.html" class="cta-btn ghost">For Creators →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="/"><img src="/assets/vorso-logo.png" alt="VORSO" style="height:92px;width:auto;" /></a>
+    <p>&copy; 2026 VORSO. All rights reserved.</p>
+    <div class="footer-social">
+      <a href="https://instagram.com/playvorso" target="_blank" rel="noopener noreferrer" aria-label="VORSO on Instagram">
+        <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C20.85 1.35 20.18.94 19.39.63 18.63.33 17.75.13 16.48.07 15.2.01 14.79 0 11.53 0h.47zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.4a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+      </a>
+      <a href="https://x.com/playvorso" target="_blank" rel="noopener noreferrer" aria-label="VORSO on X">
+        <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg>
+      </a>
+    </div>
+    <div class="flinks"><a href="/">Home</a> · <a href="/creators.html">For Creators</a> · <a href="/support.html">Support</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), { passive: true });
+    const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  </script>
+</body>
+</html>

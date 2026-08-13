@@ -83,7 +83,7 @@
     .nav-social a:hover { color: var(--white); transform: scale(1.1); }
     .nav-social svg { width: 26px; height: 26px; fill: currentColor; }
     .nav-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.01em; white-space: nowrap; transition: color 0.2s; }
-    .nav-link:hover { color: var(--white); }
+    .nav-link:hover, .nav-link.active { color: var(--white); }
 
 
     /* REVEAL */
@@ -355,6 +355,7 @@
       <a href="/" class="nav-logo">
         <img src="/assets/vorso-logo.png" alt="VORSO" />
       </a>
+      <a href="/about.html" class="nav-link">About</a>
       <a href="/creators.html" class="nav-link">For Creators</a>
     </div>
     <div class="nav-right">
@@ -501,32 +502,6 @@
     </div>
   </section>
 
-  <!-- FOUNDERS -->
-  <section class="section" style="padding-top:0">
-    <div class="section-label reveal">The People Behind It</div>
-    <h2 class="reveal d1">Built by three people who wanted more from fitness.</h2>
-    <div class="founder-grid">
-      <div class="founder-card reveal d1">
-        <div class="founder-initial"><span>T</span></div>
-        <h3>Taher</h3>
-        <div class="founder-role">Founder · Product &amp; Engineering</div>
-        <p>Drives VORSO's product, engineering and vision — building the platform end to end, from the games to the leaderboards to the social layer.</p>
-      </div>
-      <div class="founder-card reveal d2">
-        <div class="founder-initial"><span>A</span></div>
-        <h3>Ashutosh</h3>
-        <div class="founder-role">Co-Founder · Game Design &amp; Market</div>
-        <p>An engineering professional with deep roots in sports business — from operations at a major football club to running large-scale sports initiatives. Shapes VORSO's games, experience, and the challenge at its heart.</p>
-      </div>
-      <div class="founder-card reveal d3">
-        <div class="founder-initial"><span>O</span></div>
-        <h3>Osama</h3>
-        <div class="founder-role">Co-Founder · Operations &amp; Strategy</div>
-        <p>Leads operations and strategy — scaling VORSO and turning the vision into a plan that reaches people everywhere.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- FAQ -->
   <section class="section" style="padding-top:0">
     <div class="section-label reveal">FAQ</div>
@@ -622,7 +597,7 @@
         <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg>
       </a>
     </div>
-    <a href="/creators.html">For Creators</a> · <a href="/support.html">Support</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
+    <a href="/about.html">About</a> · <a href="/creators.html">For Creators</a> · <a href="/support.html">Support</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
   </footer>
 
   <script>
