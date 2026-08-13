@@ -84,35 +84,6 @@
     .nav-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.01em; white-space: nowrap; transition: color 0.2s; }
     .nav-link:hover { color: var(--white); }
 
-    /* FOUNDING CREATORS */
-    #creators { scroll-margin-top: 110px; }
-    .creator-apply {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 22px;
-      padding: 40px 36px; margin-top: 44px; position: relative; overflow: hidden;
-    }
-    .creator-apply::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); }
-    .creator-apply h3 { font-size: 1.4rem; font-weight: 900; margin-bottom: 8px; }
-    .creator-apply > p { color: var(--muted); font-size: 0.95rem; max-width: 540px; margin-bottom: 24px; line-height: 1.7; }
-    .creator-form { display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
-    .creator-form .row2 { display: flex; gap: 12px; flex-wrap: wrap; }
-    .creator-form input, .creator-form textarea {
-      width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--white);
-      font-size: 0.9rem; padding: 13px 15px; border-radius: 10px; outline: none;
-      font-family: inherit; transition: border-color 0.2s;
-    }
-    .creator-form .row2 input { width: auto; flex: 1 1 180px; }
-    .creator-form input:focus, .creator-form textarea:focus { border-color: var(--blue); }
-    .creator-form textarea { resize: none; }
-    .creator-form button {
-      background: var(--grad); color: #fff; font-size: 0.95rem; font-weight: 800;
-      padding: 14px; border: none; border-radius: 10px; cursor: pointer;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .creator-form button:hover { opacity: 0.9; }
-    .creator-form button:active { transform: scale(0.99); }
-    .creator-hint { display: none; margin-top: 14px; font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-    .creator-hint a, .creator-apply .form-note a { color: var(--blue); text-decoration: none; }
-    .creator-step-mark { font-size: 1.5rem; line-height: 1; }
 
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
@@ -366,7 +337,6 @@
       .nav-logo img { height: 84px; }
       nav.scrolled .nav-logo img { height: 64px; }
       .nav-link { display: none; }
-      .creator-apply { padding: 30px 22px; }
       .hero { padding-top: 150px; }
       .hero h1 { font-size: 2.6rem; }
       .signup-section { padding: 32px 22px; }
@@ -392,7 +362,7 @@
           <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg>
         </a>
       </div>
-      <a href="#creators" class="nav-link">For Creators</a>
+      <a href="/creators.html" class="nav-link">For Creators</a>
       <a href="https://apps.apple.com/app/id6774965681" class="nav-cta">Download</a>
     </div>
   </nav>
@@ -554,35 +524,6 @@
     </div>
   </section>
 
-  <!-- FOUNDING CREATORS -->
-  <section class="section" id="creators" style="padding-top:0">
-    <div class="section-label reveal">Founding Creators Program</div>
-    <h2 class="reveal d1">Do you want to be a founding creator for VORSO?</h2>
-    <p class="reveal d2">We just launched — and we're inviting a first wave of creators to grow with us. If you're building a tight-knit, engaged community (roughly under 10k on Instagram), you're exactly who we're looking for. Here, trust beats reach.</p>
-    <div class="steps">
-      <div class="step reveal d1"><div class="step-num creator-step-mark">&spades;</div><h3>Your posts become playable</h3><p>Freeze your deck or run as a Challenge — your followers open the app and try to beat you. A workout post turns into a competition.</p></div>
-      <div class="step reveal d2"><div class="step-num creator-step-mark">&hearts;</div><h3>Get in early</h3><p>Be one of the first creators on the platform, not the ten-thousandth. Founding creators help shape what VORSO becomes.</p></div>
-      <div class="step reveal d3"><div class="step-num creator-step-mark">&diams;</div><h3>Easy to stand behind</h3><p>Free, no ads, privacy-first — your GPS route and form videos never leave your phone. Nothing you'd hesitate to recommend.</p></div>
-      <div class="step reveal d4"><div class="step-num creator-step-mark">&clubs;</div><h3>Rewards — on a call</h3><p>Once we talk, we'll map out terms, rewards, featured challenges and early access — built around you and your niche, not a template.</p></div>
-    </div>
-
-    <div class="creator-apply reveal">
-      <h3>Tell us about you.</h3>
-      <p>Send this over and we'll be in touch to set up a quick 15-minute call — where we'll talk terms, rewards, and what you'd love to do with VORSO. No pressure, no fixed script.</p>
-      <form class="creator-form" id="creator-form">
-        <div class="row2">
-          <input type="text" id="cr-name" placeholder="Your name" required />
-          <input type="text" id="cr-ig" placeholder="Instagram @handle" required />
-        </div>
-        <input type="text" id="cr-followers" placeholder="Roughly how many followers? (optional)" />
-        <textarea id="cr-msg" rows="3" placeholder="What would you love to do with VORSO? (optional)"></textarea>
-        <button type="submit" id="cr-btn">Apply to become a founding creator →</button>
-      </form>
-      <p class="creator-hint" id="creator-hint">Opening your email app — just hit send and it comes straight to us. Not working? Email <a href="mailto:taher@vorso.org?subject=VORSO%20Founding%20Creator">taher@vorso.org</a>.</p>
-      <p class="form-note" style="text-align:left;margin-top:14px;">Goes straight to Taher at <a href="mailto:taher@vorso.org?subject=VORSO%20Founding%20Creator">taher@vorso.org</a> — we reply personally.</p>
-    </div>
-  </section>
-
   <!-- FAQ -->
   <section class="section" style="padding-top:0">
     <div class="section-label reveal">FAQ</div>
@@ -678,7 +619,7 @@
         <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg>
       </a>
     </div>
-    <a href="/support.html">Support</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
+    <a href="/creators.html">For Creators</a> · <a href="/support.html">Support</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
   </footer>
 
   <script>
@@ -792,28 +733,6 @@
       });
     }
 
-    /* Founding-creator application → opens a pre-filled email to Taher */
-    const creatorForm = document.getElementById('creator-form');
-    if (creatorForm) {
-      creatorForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('cr-name').value.trim();
-        const ig   = document.getElementById('cr-ig').value.trim();
-        const fol  = document.getElementById('cr-followers').value.trim();
-        const msg  = document.getElementById('cr-msg').value.trim();
-        const subject = `VORSO Founding Creator — ${name || ig || 'application'}`;
-        const body =
-          `Hi Taher,\n\nI'd love to be a founding creator for VORSO.\n\n` +
-          `Name: ${name}\n` +
-          `Instagram: ${ig}\n` +
-          `Followers (approx): ${fol || '—'}\n\n` +
-          `What I'd love to do with VORSO:\n${msg || '—'}\n\n` +
-          `Best times for a quick call:\n\n— Sent from vorso.org`;
-        window.location.href =
-          `mailto:taher@vorso.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        document.getElementById('creator-hint').style.display = 'block';
-      });
-    }
   </script>
 </body>
 </html>
