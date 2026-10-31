@@ -115,8 +115,8 @@
           <tr>
             <td><strong>Workout history, streaks, XP, personal bests</strong></td>
             <td>Show your progress across your devices</td>
-            <td>Your device, plus your own private iCloud account (Apple)</td>
-            <td>Until you delete the app and your iCloud data, or request deletion</td>
+            <td><strong>iPhone:</strong> your device, plus your own private iCloud account (Apple).<br><strong>Android:</strong> your device only — this data is not synced anywhere.</td>
+            <td>Until you delete the app (and, on iPhone, your iCloud data), or request deletion</td>
           </tr>
           <tr>
             <td><strong>Profile photo</strong> (optional)</td>
@@ -167,7 +167,8 @@
     <p>If you use <strong>"Find friends from Contacts"</strong> (entirely optional), your contacts <strong>never leave your device</strong>. We create a <strong>one-way SHA-256 hash</strong> of each contact's email address on your phone and send only those scrambled hashes — never the emails, phone numbers, names, or the contacts themselves — to check which of your contacts already have a VORSO account. So that friends who have <em>your</em> email can find you, we store a one-way hash of your own email address (never the email itself), which is deleted when you delete your account. Because we only ever send and store <strong>one-way hashes</strong>, we never receive or keep your contacts' actual email addresses.</p>
 
     <h2>3. What Stays on Your Device vs. What We Store</h2>
-    <p><strong>On your device (and your private iCloud):</strong> your workout history, streaks, XP, personal bests, and profile photo. This is synced only between your device and <strong>your own iCloud account</strong> — it is not sent to VORSO's servers and is not accessible to us.</p>
+    <p><strong>On your device:</strong> your workout history, streaks, XP, personal bests, and profile photo. This is <strong>not sent to VORSO's servers and is not accessible to us</strong> on either platform.</p>
+    <p>How it is kept differs by platform. On <strong>iPhone</strong>, this data is synced between your devices through <strong>your own private iCloud account</strong>, so it follows you to a new iPhone. On <strong>Android</strong>, it is stored <strong>only on the device itself</strong> and is not synced to any cloud account — which means that uninstalling the app, or moving to a new Android phone, will not carry this data over.</p>
     <p><strong>On our servers (AWS, US-East):</strong> your account, username, age, optional profile details, and — when you use the social and leaderboard features — your scores, posts, comments, likes, follows, and reports. This is what makes leaderboards and the feed work across users.</p>
 
     <h2>4. Social Features &amp; What Others Can See</h2>
